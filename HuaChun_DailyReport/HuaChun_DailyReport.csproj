@@ -1,0 +1,308 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{78051F99-57FD-48BC-A263-4632C9469CFF}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>HuaChun_DailyReport</RootNamespace>
+    <AssemblyName>HuaChun_DailyReport</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="itextsharp, Version=5.4.3.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\itextsharp.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data, Version=6.9.6.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ExtentionEditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ExtentionEditForm.Designer.cs">
+      <DependentUpon>ExtentionEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ExtentionIncreaseForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ExtentionIncreaseForm.Designer.cs">
+      <DependentUpon>ExtentionIncreaseForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AppSetting.cs" />
+    <Compile Include="ClassPDFGenerator.cs" />
+    <Compile Include="DayCompute.cs" />
+    <Compile Include="EditFormBase.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditFormBase.Designer.cs">
+      <DependentUpon>EditFormBase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Functions.cs" />
+    <Compile Include="HolidaySettingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HolidaySettingForm.Designer.cs">
+      <DependentUpon>HolidaySettingForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="IncreaseEditFormBase.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="IncreaseEditFormBase.Designer.cs">
+      <DependentUpon>IncreaseEditFormBase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LaborEditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LaborEditForm.Designer.cs">
+      <DependentUpon>LaborEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LaborIncreaseForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LaborIncreaseForm.Designer.cs">
+      <DependentUpon>LaborIncreaseForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LaborSearchForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LaborSearchForm.Designer.cs">
+      <DependentUpon>LaborSearchForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LoginForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LoginForm.Designer.cs">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Main.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Main.Designer.cs">
+      <DependentUpon>Main.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MaterialEditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MaterialEditForm.Designer.cs">
+      <DependentUpon>MaterialEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MaterialIncreaseForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MaterialIncreaseForm.Designer.cs">
+      <DependentUpon>MaterialIncreaseForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MaterialSearchForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MaterialSearchForm.Designer.cs">
+      <DependentUpon>MaterialSearchForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MemberEditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MemberEditForm.Designer.cs">
+      <DependentUpon>MemberEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MemberSearchForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MemberSearchForm.Designer.cs">
+      <DependentUpon>MemberSearchForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ProcessCodeEditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProcessCodeEditForm.Designer.cs">
+      <DependentUpon>ProcessCodeEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ProcessCodeIncreaseForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProcessCodeIncreaseForm.Designer.cs">
+      <DependentUpon>ProcessCodeIncreaseForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ProcessCodeSearchForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProcessCodeSearchForm.Designer.cs">
+      <DependentUpon>ProcessCodeSearchForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ProjectEditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProjectEditForm.Designer.cs">
+      <DependentUpon>ProjectEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ProjectSearchForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProjectSearchForm.Designer.cs">
+      <DependentUpon>ProjectSearchForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SearchFormBase.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SearchFormBase.Designer.cs">
+      <DependentUpon>SearchFormBase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MemberIncreaseForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MemberIncreaseForm.Designer.cs">
+      <DependentUpon>MemberIncreaseForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MySQL.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="ProjectIncreaseForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProjectIncreaseForm.Designer.cs">
+      <DependentUpon>ProjectIncreaseForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="DailyReportIncreaseForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DailyReportIncreaseForm.Designer.cs">
+      <DependentUpon>DailyReportIncreaseForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ToolEditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ToolEditForm.Designer.cs">
+      <DependentUpon>ToolEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ToolIncreaseForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ToolIncreaseForm.Designer.cs">
+      <DependentUpon>ToolIncreaseForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ToolSearchForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ToolSearchForm.Designer.cs">
+      <DependentUpon>ToolSearchForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VendorSearchForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VendorSearchForm.Designer.cs">
+      <DependentUpon>VendorSearchForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VendorEditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VendorEditForm.Designer.cs">
+      <DependentUpon>VendorEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VendorIncreaseForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VendorIncreaseForm.Designer.cs">
+      <DependentUpon>VendorIncreaseForm.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="ExtentionIncreaseForm.resx">
+      <DependentUpon>ExtentionIncreaseForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditFormBase.resx">
+      <DependentUpon>EditFormBase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HolidaySettingForm.resx">
+      <DependentUpon>HolidaySettingForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="IncreaseEditFormBase.resx">
+      <DependentUpon>IncreaseEditFormBase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LoginForm.resx">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Main.resx">
+      <DependentUpon>Main.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MaterialSearchForm.resx">
+      <DependentUpon>MaterialSearchForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SearchFormBase.resx">
+      <DependentUpon>SearchFormBase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MemberIncreaseForm.resx">
+      <DependentUpon>MemberIncreaseForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProjectIncreaseForm.resx">
+      <DependentUpon>ProjectIncreaseForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="DailyReportIncreaseForm.resx">
+      <DependentUpon>DailyReportIncreaseForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VendorSearchForm.resx">
+      <DependentUpon>VendorSearchForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VendorIncreaseForm.resx">
+      <DependentUpon>VendorIncreaseForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
