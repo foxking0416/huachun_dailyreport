@@ -25,6 +25,11 @@ namespace HuaChun_DailyReport
         protected string DB_Name;
         protected string rowNo;
         protected string rowName;
+        protected int formType;
+        protected int rowIndex;
+        protected int columnIndex;
+        protected int tabIndex;
+        protected DailyReportIncreaseForm reportForm;
 
         public SearchFormBase()
         {
@@ -32,7 +37,7 @@ namespace HuaChun_DailyReport
             
         }
 
-        protected void Initialize()
+        protected virtual void Initialize()
         {
 
             textBox2.Enabled = false;
@@ -52,14 +57,15 @@ namespace HuaChun_DailyReport
             dataGridView1.ReadOnly = true;
             dataGridView1.AllowUserToAddRows = false;
             dataGridView1.MultiSelect = false;
-        }
 
-        protected virtual void btnCheck_Click(object sender, EventArgs e)
-        {
-            //string number = dataGridView1[0, dataGridView1.CurrentRow.Index].Value.ToString();
-            //vendorEditForm.LoadInformation(number);
-
-            //this.Close();
+            DataRow dataRow;
+            for (int i = 0; i < numbers.Length; i++)
+            {
+                dataRow = dataTable.NewRow();
+                dataRow[rowNo] = numbers[i];
+                dataRow[rowName] = SQL.Read_SQL_data(DB_Name, DB_TableName, DB_No + " = '" + numbers[i] + "'");
+                dataTable.Rows.Add(dataRow);
+            }
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -81,7 +87,11 @@ namespace HuaChun_DailyReport
             }
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
+        protected virtual void btnCheck_Click(object sender, EventArgs e)
+        {
+        }
+
+        protected virtual void textBox1_TextChanged(object sender, EventArgs e)
         {
             dataTable.Clear();
 
@@ -103,7 +113,7 @@ namespace HuaChun_DailyReport
             }
         }
 
-        private void textBox2_TextChanged(object sender, EventArgs e)
+        protected virtual void textBox2_TextChanged(object sender, EventArgs e)
         {
             dataTable.Clear();
 

@@ -41,7 +41,7 @@ namespace HuaChun_DailyReport
         private void MenuItemProjectIncrease_Click(object sender, EventArgs e)
         {
             ProjectIncreaseForm form = new ProjectIncreaseForm();
-            form.Show();
+            form.ShowDialog();
         }
 
         private void MenuItemProjectEdit_Click(object sender, EventArgs e)
@@ -88,6 +88,7 @@ namespace HuaChun_DailyReport
 
         private void MenuItemLaborIncrease_Click(object sender, EventArgs e)
         {
+            //新增工人別
             LaborIncreaseForm laborIncreaseForm = new LaborIncreaseForm();
             laborIncreaseForm.ShowDialog();
         }
@@ -143,8 +144,7 @@ namespace HuaChun_DailyReport
         private void MenuItemDailyReportBuild_Click(object sender, EventArgs e)
         {
             DailyReportIncreaseForm reportBuildForm = new DailyReportIncreaseForm();
-            reportBuildForm.Show();
-            //reportBuildForm.TopMost = true;
+            reportBuildForm.ShowDialog();
         }
 
         private void MenuItemDailyReportEdit_Click(object sender, EventArgs e)

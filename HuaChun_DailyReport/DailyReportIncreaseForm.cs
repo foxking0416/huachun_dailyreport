@@ -58,6 +58,8 @@ namespace HuaChun_DailyReport
 
             ComputeDayOfWeek();
 
+
+            ////////////////////////////////////////////////////////////////
             dataTableMaterial = new DataTable("MaterialTable");
             dataTableMaterial.Columns.Add("廠商編號", typeof(String));
             dataTableMaterial.Columns.Add("廠商名稱", typeof(String));
@@ -72,50 +74,54 @@ namespace HuaChun_DailyReport
             dataTableMaterial.Columns.Add("本日用量", typeof(String));
             dataTableMaterial.Columns.Add("累計用量", typeof(String));
             dataTableMaterial.Columns.Add("庫存", typeof(String));
-            dataGridView1.DataSource = dataTableMaterial;
-            dataGridView1.ReadOnly = true;
-            dataGridView1.AllowUserToAddRows = false;
-            dataGridView1.MultiSelect = false;
-
+            dataTableMaterial.Rows.Add(dataTableMaterial.NewRow());
+            dataGridViewMaterial.DataSource = dataTableMaterial;
+            dataGridViewMaterial.ReadOnly = false;
+            dataGridViewMaterial.AllowUserToAddRows = false;
+            dataGridViewMaterial.MultiSelect = false;
+            dataGridViewMaterial.EditMode = DataGridViewEditMode.EditOnKeystroke;
             
-            DataRow dataRow;
-            dataRow = dataTableMaterial.NewRow();
-            dataRow["廠商編號"] = "";
-            dataTableMaterial.Rows.Add(dataRow);
 
+            ////////////////////////////////////////////////////////////////
             dataTableManPower = new DataTable("ManPowerTable");
             dataTableManPower.Columns.Add("廠商編號", typeof(String));
             dataTableManPower.Columns.Add("廠商名稱", typeof(String));
-            dataTableManPower.Columns.Add("工別", typeof(String));
-            dataTableManPower.Columns.Add("名稱", typeof(String));
+            dataTableManPower.Columns.Add("工別編號", typeof(String));
+            dataTableManPower.Columns.Add("工別名稱", typeof(String));
             dataTableManPower.Columns.Add("出工人數", typeof(String));
             dataTableManPower.Columns.Add("工時", typeof(String));
             dataTableManPower.Columns.Add("本日工數", typeof(String));
             dataTableManPower.Columns.Add("備註", typeof(String));
-            dataGridView2.DataSource = dataTableManPower;
-            dataGridView2.ReadOnly = true;
-            dataGridView2.AllowUserToAddRows = false;
-            dataGridView2.MultiSelect = false;
+            dataTableManPower.Rows.Add(dataTableManPower.NewRow());
+            dataGridViewManPower.DataSource = dataTableManPower;
+            dataGridViewManPower.ReadOnly = false;
+            dataGridViewManPower.AllowUserToAddRows = false;
+            dataGridViewManPower.MultiSelect = false;
 
+
+            ////////////////////////////////////////////////////////////////
             dataTableTool = new DataTable("ToolTable");
             dataTableTool.Columns.Add("廠商編號", typeof(String));
             dataTableTool.Columns.Add("廠商名稱", typeof(String));
-            dataTableTool.Columns.Add("機號", typeof(String));
+            dataTableTool.Columns.Add("機具編號", typeof(String));
             dataTableTool.Columns.Add("機具名稱", typeof(String));
             dataTableTool.Columns.Add("出工數", typeof(String));
             dataTableTool.Columns.Add("工時", typeof(String));
             dataTableTool.Columns.Add("本日工數", typeof(String));
             dataTableTool.Columns.Add("備註", typeof(String));
-            dataGridView3.DataSource = dataTableTool;
-            dataGridView3.ReadOnly = true;
-            dataGridView3.AllowUserToAddRows = false;
-            dataGridView3.MultiSelect = false;
+            dataTableTool.Rows.Add(dataTableTool.NewRow());
+            dataGridViewTool.DataSource = dataTableTool;
+            dataGridViewTool.ReadOnly = true;
+            dataGridViewTool.AllowUserToAddRows = false;
+            dataGridViewTool.MultiSelect = false;
 
+
+            ////////////////////////////////////////////////////////////////
             dataTableOutsourcing = new DataTable("OutsourcingTable");
             dataTableOutsourcing.Columns.Add("廠商編號", typeof(String));
             dataTableOutsourcing.Columns.Add("廠商名稱", typeof(String));
             dataTableOutsourcing.Columns.Add("施工編號", typeof(String));
-            dataTableOutsourcing.Columns.Add("名稱", typeof(String));
+            dataTableOutsourcing.Columns.Add("施工名稱", typeof(String));
             dataTableOutsourcing.Columns.Add("單位", typeof(String));
             dataTableOutsourcing.Columns.Add("已出工", typeof(String));
             dataTableOutsourcing.Columns.Add("出工", typeof(String));
@@ -124,20 +130,24 @@ namespace HuaChun_DailyReport
             dataTableOutsourcing.Columns.Add("施作", typeof(String));
             dataTableOutsourcing.Columns.Add("累計施作", typeof(String));
             dataTableOutsourcing.Columns.Add("備註", typeof(String));
-            dataGridView4.DataSource = dataTableOutsourcing;
-            dataGridView4.ReadOnly = true;
-            dataGridView4.AllowUserToAddRows = false;
-            dataGridView4.MultiSelect = false;
+            dataTableOutsourcing.Rows.Add(dataTableOutsourcing.NewRow());
+            dataGridViewOutsourcing.DataSource = dataTableOutsourcing;
+            dataGridViewOutsourcing.ReadOnly = false;
+            dataGridViewOutsourcing.AllowUserToAddRows = false;
+            dataGridViewOutsourcing.MultiSelect = false;
 
+
+            ////////////////////////////////////////////////////////////////
             dataTableVacation = new DataTable("VacationTable");
-            dataTableVacation.Columns.Add("員工", typeof(String));
+            dataTableVacation.Columns.Add("員工編號", typeof(String));
             dataTableVacation.Columns.Add("姓名", typeof(String));
             dataTableVacation.Columns.Add("休假天數", typeof(String));
             dataTableVacation.Columns.Add("備註", typeof(String));
-            dataGridView5.DataSource = dataTableVacation;
-            dataGridView5.ReadOnly = true;
-            dataGridView5.AllowUserToAddRows = false;
-            dataGridView5.MultiSelect = false;
+            dataTableVacation.Rows.Add(dataTableVacation.NewRow());
+            dataGridViewVacation.DataSource = dataTableVacation;
+            dataGridViewVacation.ReadOnly = false;
+            dataGridViewVacation.AllowUserToAddRows = false;
+            dataGridViewVacation.MultiSelect = false;
         }
 
         private void ComputeDayOfWeek()
@@ -183,8 +193,12 @@ namespace HuaChun_DailyReport
 
         }
 
+        private void btnSave_Click(object sender, EventArgs e)
+        {
 
-        private void button1_Click(object sender, EventArgs e)
+        }
+
+        private void btnExit_Click(object sender, EventArgs e)
         {
             //Print();
             //ReadDB();
@@ -207,16 +221,185 @@ namespace HuaChun_DailyReport
             this.textBoxRestDays.Text = (this.dateProjectEnd_Contract.Value.Date.Subtract(this.dateToday.Value.Date).Days).ToString();
         }
 
-        private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void dataGridViewMaterial_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
+            //e.ColumnIndex 0: 廠商編號
+            //e.ColumnIndex 1: 廠商名稱
+            //e.ColumnIndex 2: 材料編號
+            //e.ColumnIndex 3: 材料名稱
+            //e.ColumnIndex 4: 單位
             if (e.ColumnIndex == 0 || e.ColumnIndex == 1)
             {
-                String test = "";
-                VendorSearchForm vendorSearchForm = new VendorSearchForm(test);
+                VendorSearchForm vendorSearchForm = new VendorSearchForm(this, 0, e.RowIndex, 0);
                 vendorSearchForm.ShowDialog();
-                int i = 0;
+            }
+            else if (e.ColumnIndex == 2 || e.ColumnIndex == 3 || e.ColumnIndex == 4)
+            {
+                MaterialSearchForm materialSearchForm = new MaterialSearchForm(this, e.RowIndex, 2);
+                materialSearchForm.ShowDialog();
+
             }
         }
+
+        public void SetDataGridViewValue(int dataGridViewIndex, string value, int column, int row)
+        {
+            switch(dataGridViewIndex)
+            {
+                case 0://材料使用數量
+                    dataGridViewMaterial.Rows[row].Cells[column].Value = value;
+                    dataGridViewMaterial.EndEdit();
+                    break;
+                case 1://出工人數
+                    dataGridViewManPower.Rows[row].Cells[column].Value = value;
+                    dataGridViewManPower.EndEdit();
+                    break;
+                case 2://機具使用
+                    dataGridViewTool.Rows[row].Cells[column].Value = value;
+                    dataGridViewTool.EndEdit();
+                    break;
+                case 3://外包項目
+                    dataGridViewOutsourcing.Rows[row].Cells[column].Value = value;
+                    dataGridViewOutsourcing.EndEdit();
+                    break;
+                case 4://休假紀錄
+                    dataGridViewVacation.Rows[row].Cells[column].Value = value;
+                    dataGridViewVacation.EndEdit();
+                    break;
+            }
+        }
+
+
+
+        private void dataGridViewManPower_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            //e.ColumnIndex 0: 廠商編號
+            //e.ColumnIndex 1: 廠商名稱
+            //e.ColumnIndex 2: 工別編號
+            //e.ColumnIndex 3: 工別名稱
+            if (e.ColumnIndex == 0 || e.ColumnIndex == 1)
+            {
+                VendorSearchForm vendorSearchForm = new VendorSearchForm(this, 1, e.RowIndex, 0);
+                vendorSearchForm.ShowDialog();
+            }
+            else if (e.ColumnIndex == 2 || e.ColumnIndex == 3)
+            {
+                LaborSearchForm laborSearchForm = new LaborSearchForm(this, 1, e.RowIndex, 2);
+                laborSearchForm.ShowDialog();
+
+            }
+        }
+
+        private void dataGridViewTool_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            //e.ColumnIndex 0: 廠商編號
+            //e.ColumnIndex 1: 廠商名稱
+            //e.ColumnIndex 2: 機具編號
+            //e.ColumnIndex 3: 機具名稱
+            if (e.ColumnIndex == 0 || e.ColumnIndex == 1)
+            {
+                VendorSearchForm vendorSearchForm = new VendorSearchForm(this, 2, e.RowIndex, 0);
+                vendorSearchForm.ShowDialog();
+            }
+            else if (e.ColumnIndex == 2 || e.ColumnIndex == 3)
+            {
+                ToolSearchForm toolSearchForm = new ToolSearchForm(this, 2, e.RowIndex, 2);
+                toolSearchForm.ShowDialog();
+
+            }
+        }
+
+        private void dataGridViewOutsourcing_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            //e.ColumnIndex 0: 廠商編號
+            //e.ColumnIndex 1: 廠商名稱
+            //e.ColumnIndex 2: 施工編號
+            //e.ColumnIndex 3: 施工名稱
+            //e.ColumnIndex 4: 單位
+            if (e.ColumnIndex == 0 || e.ColumnIndex == 1)
+            {
+                VendorSearchForm vendorSearchForm = new VendorSearchForm(this, 3, e.RowIndex, 0);
+                vendorSearchForm.ShowDialog();
+            }
+            else if (e.ColumnIndex == 2 || e.ColumnIndex == 3 || e.ColumnIndex == 4)
+            {
+                ProcessCodeSearchForm processCodeSearchForm = new ProcessCodeSearchForm(this, 3, e.RowIndex, 2);
+                processCodeSearchForm.ShowDialog();
+
+            }
+        }
+
+        private void dataGridViewVacation_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            //e.ColumnIndex 0: 員工編號
+            //e.ColumnIndex 1: 員工名稱
+            if (e.ColumnIndex == 0 || e.ColumnIndex == 1)
+            {
+                MemberSearchForm memberSearchForm = new MemberSearchForm(this, 4, e.RowIndex, 0);
+                memberSearchForm.ShowDialog();
+            }
+        }
+
+        private void btnAddData_Click(object sender, EventArgs e)
+        {
+            switch (tabControl1.SelectedIndex)
+            {
+                case 0://材料使用數量
+                    dataTableMaterial.Rows.Add(dataTableMaterial.NewRow());
+                    break;
+                case 1://出工人數
+                    dataTableManPower.Rows.Add(dataTableManPower.NewRow());
+                    break;
+                case 2://機具使用
+                    dataTableTool.Rows.Add(dataTableTool.NewRow());
+                    break;
+                case 3://外包項目
+                    dataTableOutsourcing.Rows.Add(dataTableOutsourcing.NewRow());
+                    break;
+                case 4://休假紀錄
+                    dataTableVacation.Rows.Add(dataTableVacation.NewRow());
+                    break;
+                case 5://其他
+                    break;
+            }
+        }
+
+        private void btnDeleteData_Click(object sender, EventArgs e)
+        {
+            switch (tabControl1.SelectedIndex)
+            {
+                case 0://材料使用數量
+                    dataTableMaterial.Rows.RemoveAt(dataGridViewMaterial.CurrentCell.RowIndex);
+                    break;
+                case 1://出工人數
+                    dataTableManPower.Rows.RemoveAt(dataGridViewManPower.CurrentCell.RowIndex);
+                    break;
+                case 2://機具使用
+                    dataTableTool.Rows.RemoveAt(dataGridViewTool.CurrentCell.RowIndex);
+                    break;
+                case 3://外包項目
+                    dataTableOutsourcing.Rows.RemoveAt(dataGridViewOutsourcing.CurrentCell.RowIndex);
+                    break;
+                case 4://休假紀錄
+                    dataTableVacation.Rows.RemoveAt(dataGridViewVacation.CurrentCell.RowIndex);
+                    break;
+                case 5://其他
+                    break;
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     }
 }

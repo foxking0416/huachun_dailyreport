@@ -236,7 +236,7 @@ namespace HuaChun_DailyReport
             if (textBoxContractNo.Text == string.Empty)
                 return;
 
-            string[] sameNo = SQL.Read1DArray_SQL_Data("contract_no", "project_info", "contract_no = '" + textBoxContractNo.Text + "'");
+            string[] sameNo = SQL.Read1DArray_SQL_Data("contract_no", "project_info", "contract_no = '" + textBoxContractNo.Text + "' AND project_no <> '" + textBoxProjectNo.Text + "'");
             if (sameNo.Length != 0)
             {
                 label30.Text = "已存在相同契約號";
@@ -249,81 +249,84 @@ namespace HuaChun_DailyReport
             DialogResult result = MessageBox.Show("確定要修改工程資料?", "確定", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
             if (result == DialogResult.Yes)
             {
-                ////案號及契約號
-                //SQL.Set_SQL_data("contract_no", "member", "account = '" + this.textBoxAccount.Text + "'", this.textBoxID.Text);//
-                ////工程名稱
-                //SQL.Set_SQL_data("project_name", "member", "account = '" + this.textBoxAccount.Text + "'", (radioBtnSexM.Checked) ? ("1") : ("2"));
-                ////工程地點
-                //SQL.Set_SQL_data("project_location", "member", "account = '" + this.textBoxAccount.Text + "'", Functions.GetDateTimeValue(dateTimeBirthdate.Value));
-                ////承包廠商
-                //SQL.Set_SQL_data("contractor", "member", "account = '" + this.textBoxAccount.Text + "'", this.textBoxEducation.Text);//degree
-                ////業主
-                //SQL.Set_SQL_data("owner", "member", "account = '" + this.textBoxAccount.Text + "'", this.comboBoxCity.Text);//resident_city
-                ////專業管理
-                //SQL.Set_SQL_data("manage", "member", "account = '" + this.textBoxAccount.Text + "'", this.comboBoxDistrict.Text);//resident_district
-                ////設計
-                //SQL.Set_SQL_data("design", "member", "account = '" + this.textBoxAccount.Text + "'", this.textBoxAddress.Text);//resident_address
-                ////監造
-                //SQL.Set_SQL_data("supervise", "member", "account = '" + this.textBoxAccount.Text + "'", this.comboBoxCity2.Text);//living_city
-                ////工地負責人
-                //SQL.Set_SQL_data("responsible", "member", "account = '" + this.textBoxAccount.Text + "'", this.comboBoxDistrict2.Text);//living_district
-                ////品管
-                //SQL.Set_SQL_data("quality", "member", "account = '" + this.textBoxAccount.Text + "'", this.textBoxAddress2.Text);//living_address
-                ////決標日期
-                //SQL.Set_SQL_data("biddate", "member", "account = '" + this.textBoxAccount.Text + "'", this.textBoxPhone.Text);//phone
-                ////開工日期
-                //SQL.Set_SQL_data("startdate", "member", "account = '" + this.textBoxAccount.Text + "'", this.textBoxCell.Text);//cell
-                ////契約完工日
-                //SQL.Set_SQL_data("contract_finishdate", "member", "account = '" + this.textBoxAccount.Text + "'", Functions.GetDateTimeValue(dateTimeStart.Value));//startdate
-                ////契約金額
-                //SQL.Set_SQL_data("contractamount", "member", "account = '" + this.textBoxAccount.Text + "'", Functions.GetDateTimeValue(dateTimeInsurance.Value));//insurancedate
-                ////契約工期
-                //SQL.Set_SQL_data("contractduration", "member", "account = '" + this.textBoxAccount.Text + "'", Functions.GetDateTimeValue(dateTimeLeave.Value));//enddate
-                ////工程總天數
-                //SQL.Set_SQL_data("contractdays", "member", "account = '" + this.textBoxAccount.Text + "'", this.textBoxPosition.Text);//position
-                ////主辦1
-                //SQL.Set_SQL_data("handle1", "member", "account = '" + this.textBoxAccount.Text + "'", this.textBoxServiceYear.Text);//serviceyear
-                ////主辦1電話
-                //SQL.Set_SQL_data("phone1", "member", "account = '" + this.textBoxAccount.Text + "'", this.numericRelative.Text);//relative
-                ////主辦2
-                //SQL.Set_SQL_data("handle2", "member", "account = '" + this.textBoxAccount.Text + "'", this.textBoxBankName.Text);//bank_name
-                ////主辦2電話
-                //SQL.Set_SQL_data("phone2", "member", "account = '" + this.textBoxAccount.Text + "'", this.textBoxBankAccount.Text);//bank_account
-                ////主辦3
-                //SQL.Set_SQL_data("handle3", "member", "account = '" + this.textBoxAccount.Text + "'", this.textBoxServiceYear.Text);//serviceyear
-                ////主辦3電話
-                //SQL.Set_SQL_data("phone3", "member", "account = '" + this.textBoxAccount.Text + "'", this.numericRelative.Text);//relative
-                ////主辦4
-                //SQL.Set_SQL_data("handle4", "member", "account = '" + this.textBoxAccount.Text + "'", this.textBoxBankName.Text);//bank_name
-                ////主辦4電話
-                //SQL.Set_SQL_data("phone4", "member", "account = '" + this.textBoxAccount.Text + "'", this.textBoxBankAccount.Text);//bank_account
-                ////現場
-                //SQL.Set_SQL_data("onsite", "member", "account = '" + this.textBoxAccount.Text + "'", this.textBoxBankAccount.Text);//bank_account
-                ////勞安
-                //SQL.Set_SQL_data("security", "member", "account = '" + this.textBoxAccount.Text + "'", this.textBoxBankAccount.Text);//bank_account
-                ////
-                //SQL.Set_SQL_data("workingtype", "member", "account = '" + this.textBoxAccount.Text + "'", "1");//
-
-                //SQL.Set_SQL_data("onjob", "member", "account = '" + this.textBoxAccount.Text + "'", "1");//
-                //if (radioButton1.Checked)
-                    
-                //else if (radioButton2.Checked)
-                //    SQL.Set_SQL_data("workingtype", "member", "account = '" + this.textBoxAccount.Text + "'", "2");//
-                //else if (radioButton3.Checked)
-                //    SQL.Set_SQL_data("workingtype", "member", "account = '" + this.textBoxAccount.Text + "'", "3");//
-                //else if (radioButton4.Checked)
-                //    SQL.Set_SQL_data("workingtype", "member", "account = '" + this.textBoxAccount.Text + "'", "4");//
-                //else if (radioButton5.Checked)
-                //    SQL.Set_SQL_data("workingtype", "member", "account = '" + this.textBoxAccount.Text + "'", "5");//
-                //else if (radioButton6.Checked)
-                //    SQL.Set_SQL_data("workingtype", "member", "account = '" + this.textBoxAccount.Text + "'", "6");//
-
-                //if (radioBtnOnJobN.Checked)
-                //    SQL.Set_SQL_data("onjob", "member", "account = '" + this.textBoxAccount.Text + "'", "1");//
-                //else if (radioBtnOnJobY.Checked)
-                //    SQL.Set_SQL_data("onjob", "member", "account = '" + this.textBoxAccount.Text + "'", "2");//
-
-                this.Close();
+                //案號及契約號
+                SQL.Set_SQL_data("contract_no", "project_info", "project_no = '" + this.textBoxProjectNo.Text + "'", this.textBoxContractNo.Text);//
+                //工程名稱
+                SQL.Set_SQL_data("project_name", "project_info", "project_no = '" + this.textBoxProjectNo.Text + "'", this.textBoxProjectName.Text);
+                //工程地點
+                SQL.Set_SQL_data("project_location", "project_info", "project_no = '" + this.textBoxProjectNo.Text + "'", this.textBoxProjectLocation.Text);
+                //承包廠商
+                SQL.Set_SQL_data("contractor", "project_info", "project_no = '" + this.textBoxProjectNo.Text + "'", this.textBoxContractor.Text);
+                //業主
+                SQL.Set_SQL_data("owner", "project_info", "project_no = '" + this.textBoxProjectNo.Text + "'", this.textBoxOwner.Text);
+                //專業管理
+                SQL.Set_SQL_data("manage", "project_info", "project_no = '" + this.textBoxProjectNo.Text + "'", this.textBoxManage.Text);
+                //設計
+                SQL.Set_SQL_data("design", "project_info", "project_no = '" + this.textBoxProjectNo.Text + "'", this.textBoxDesign.Text);
+                //監造
+                SQL.Set_SQL_data("supervise", "project_info", "project_no = '" + this.textBoxProjectNo.Text + "'", this.textBoxSupervisor.Text);
+                //工地負責人
+                SQL.Set_SQL_data("responsible", "project_info", "project_no = '" + this.textBoxProjectNo.Text + "'", this.textBoxResponsible.Text);
+                //品管
+                SQL.Set_SQL_data("quality", "project_info", "project_no = '" + this.textBoxProjectNo.Text + "'", this.textBoxQuality.Text);
+                //決標日期
+                SQL.Set_SQL_data("biddate", "project_info", "project_no = '" + this.textBoxProjectNo.Text + "'", Functions.GetDateTimeValue(dateTimeBid.Value));
+                //開工日期
+                SQL.Set_SQL_data("startdate", "project_info", "project_no = '" + this.textBoxProjectNo.Text + "'", Functions.GetDateTimeValue(dateTimeStart.Value));
+                //契約完工日
+                SQL.Set_SQL_data("contract_finishdate", "project_info", "project_no = '" + this.textBoxProjectNo.Text + "'", Functions.GetDateTimeValue(dateTimeFinish.Value));
+                //契約金額
+                SQL.Set_SQL_data("contractamount", "project_info", "project_no = '" + this.textBoxProjectNo.Text + "'", this.textBoxAmount.Text);
+                //契約工期
+                SQL.Set_SQL_data("contractduration", "project_info", "project_no = '" + this.textBoxProjectNo.Text + "'", this.numericDuration.Text);
+                //工程總天數
+                SQL.Set_SQL_data("contractdays", "project_info", "project_no = '" + this.textBoxProjectNo.Text + "'", this.numericDays.Text);
+                //主辦1
+                SQL.Set_SQL_data("handle1", "project_info", "project_no = '" + this.textBoxProjectNo.Text + "'", this.textBoxHandle1.Text);
+                //主辦1電話
+                SQL.Set_SQL_data("phone1", "project_info", "project_no = '" + this.textBoxProjectNo.Text + "'", this.textBoxPhone1.Text);
+                //主辦2
+                SQL.Set_SQL_data("handle2", "project_info", "project_no = '" + this.textBoxProjectNo.Text + "'", this.textBoxHandle2.Text);
+                //主辦2電話
+                SQL.Set_SQL_data("phone2", "project_info", "project_no = '" + this.textBoxProjectNo.Text + "'", this.textBoxPhone2.Text);
+                //主辦3
+                SQL.Set_SQL_data("handle3", "project_info", "project_no = '" + this.textBoxProjectNo.Text + "'", this.textBoxHandle3.Text);
+                //主辦3電話
+                SQL.Set_SQL_data("phone3", "project_info", "project_no = '" + this.textBoxProjectNo.Text + "'", this.textBoxPhone3.Text);
+                //主辦4
+                SQL.Set_SQL_data("handle4", "project_info", "project_no = '" + this.textBoxProjectNo.Text + "'", this.textBoxHandle4.Text);
+                //主辦4電話
+                SQL.Set_SQL_data("phone4", "project_info", "project_no = '" + this.textBoxProjectNo.Text + "'", this.textBoxPhone4.Text);
+                //現場
+                SQL.Set_SQL_data("onsite", "project_info", "project_no = '" + this.textBoxProjectNo.Text + "'", this.textBoxOnsite.Text);
+                //勞安
+                SQL.Set_SQL_data("security", "project_info", "project_no = '" + this.textBoxProjectNo.Text + "'", this.textBoxSecurity.Text);
+                //工期型式
+                
+                if (radioBtnRestrictSchedule.Checked == true)
+                {
+                    SQL.Set_SQL_data("computetype", "project_info", "project_no = '" + this.textBoxProjectNo.Text + "'", "1");
+                }
+                else if (radioBtnCalenderDay.Checked == true)
+                {
+                    SQL.Set_SQL_data("computetype", "project_info", "project_no = '" + this.textBoxProjectNo.Text + "'", "2");
+                }
+                else if (radioBtnWorkingDay.Checked == true)
+                {
+                    if (radioBtnNoWeekend.Checked == true)
+                        SQL.Set_SQL_data("computetype", "project_info", "project_no = '" + this.textBoxProjectNo.Text + "'", "3");
+                    else if (radioBtnSun.Checked == true)
+                        SQL.Set_SQL_data("computetype", "project_info", "project_no = '" + this.textBoxProjectNo.Text + "'", "4");
+                    else if (radioBtnSatSun.Checked == true)
+                        SQL.Set_SQL_data("computetype", "project_info", "project_no = '" + this.textBoxProjectNo.Text + "'", "5");
+                }
+                //計算假日
+                if (checkBoxHoliday.Checked)
+                    SQL.Set_SQL_data("holiday", "project_info", "project_no = '" + this.textBoxProjectNo.Text + "'", "1");
+                else
+                    SQL.Set_SQL_data("holiday", "project_info", "project_no = '" + this.textBoxProjectNo.Text + "'", "0");
+               
+                //this.Close();
             }
         }
 
@@ -362,15 +365,15 @@ namespace HuaChun_DailyReport
             this.textBoxPhone2.Text = SQL.Read_SQL_data("phone2", "project_info", "project_no = '" + projectNumber + "'");
             this.textBoxPhone3.Text = SQL.Read_SQL_data("phone3", "project_info", "project_no = '" + projectNumber + "'");
             this.textBoxPhone4.Text = SQL.Read_SQL_data("phone4", "project_info", "project_no = '" + projectNumber + "'");
-            this.numericUpDownDays.Value = Convert.ToDecimal(SQL.Read_SQL_data("contractdays", "project_info", "project_no = '" + projectNumber + "'"));
-            this.numericUpDownDuration.Value = Convert.ToDecimal(SQL.Read_SQL_data("contractduration", "project_info", "project_no = '" + projectNumber + "'"));
+            this.numericDays.Value = Convert.ToDecimal(SQL.Read_SQL_data("contractdays", "project_info", "project_no = '" + projectNumber + "'"));
+            this.numericDuration.Value = Convert.ToDecimal(SQL.Read_SQL_data("contractduration", "project_info", "project_no = '" + projectNumber + "'"));
 
           
             string startDate = SQL.Read_SQL_data("startdate", "project_info", "project_no = '" + projectNumber + "'");
             dateTimeStart.Value = Functions.TransferSQLDateToDateTime(startDate);
          
             string bidDate = SQL.Read_SQL_data("biddate", "project_info", "project_no = '" + projectNumber + "'");
-            dateTimeSigned.Value = Functions.TransferSQLDateToDateTime(bidDate);
+            dateTimeBid.Value = Functions.TransferSQLDateToDateTime(bidDate);
 
             string finishDate = SQL.Read_SQL_data("contract_finishdate", "project_info", "project_no = '" + projectNumber + "'");
             dateTimeFinish.Value = Functions.TransferSQLDateToDateTime(finishDate);

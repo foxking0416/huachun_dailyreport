@@ -34,8 +34,8 @@ namespace HuaChun_DailyReport
 
             SQL = new MySQL(dbHost, dbUser, dbPass, dbName);
 
-            numericUpDownDuration.ReadOnly = true;
-            numericUpDownDays.ReadOnly = true;
+            numericDuration.ReadOnly = true;
+            numericDays.ReadOnly = true;
             dateTimeFinish.Enabled = true;
             groupBox2.Enabled = false;
             checkBoxHoliday.Enabled = false;
@@ -94,12 +94,12 @@ namespace HuaChun_DailyReport
             commandStr = commandStr + textBoxSupervisor.Text + "','";
             commandStr = commandStr + textBoxResponsible.Text + "','";
             commandStr = commandStr + textBoxQuality.Text + "','";
-            commandStr = commandStr + Functions.GetDateTimeValue(dateTimeSigned.Value)  + "','";
+            commandStr = commandStr + Functions.GetDateTimeValue(dateTimeBid.Value)  + "','";
             commandStr = commandStr + Functions.GetDateTimeValue(dateTimeStart.Value) + "','";
             commandStr = commandStr + Functions.GetDateTimeValue(dateTimeFinish.Value) + "','";
             commandStr = commandStr + textBoxAmount.Text + "','";
-            commandStr = commandStr + numericUpDownDuration.Text + "','";
-            commandStr = commandStr + numericUpDownDays.Text + "','";
+            commandStr = commandStr + numericDuration.Text + "','";
+            commandStr = commandStr + numericDays.Text + "','";
             commandStr = commandStr + textBoxHandle1.Text + "','";
             commandStr = commandStr + textBoxPhone1.Text + "','";
             commandStr = commandStr + textBoxHandle2.Text + "','";
@@ -170,8 +170,8 @@ namespace HuaChun_DailyReport
             this.textBoxPhone2.Clear();
             this.textBoxPhone3.Clear();
             this.textBoxPhone4.Clear();
-            this.numericUpDownDays.Value = 0;
-            this.numericUpDownDuration.Value = 0;
+            this.numericDays.Value = 0;
+            this.numericDuration.Value = 0;
         }
 
          
@@ -215,33 +215,33 @@ namespace HuaChun_DailyReport
 
         private void btnCalculateByDuration_Click(object sender, EventArgs e)
         {
-            DayCompute dayCompute = new DayCompute(dateTimeStart.Value, Convert.ToInt32(numericUpDownDuration.Value));
+            DayCompute dayCompute = new DayCompute(dateTimeStart.Value, Convert.ToInt32(numericDuration.Value));
 
             SetupDayComputer(dayCompute);
 
 
-            DateTime FinishDate =  dayCompute.CountByDuration(dateTimeStart.Value, Convert.ToInt32(numericUpDownDuration.Value));
+            DateTime FinishDate =  dayCompute.CountByDuration(dateTimeStart.Value, Convert.ToInt32(numericDuration.Value));
             dateTimeFinish.Value = FinishDate;
-            numericUpDownDays.Value = FinishDate.Subtract(dateTimeStart.Value).Days + 1;
+            numericDays.Value = FinishDate.Subtract(dateTimeStart.Value).Days + 1;
         }
 
         private void btnCalculateByFinish_Click(object sender, EventArgs e)
         {
-            DayCompute dayCompute = new DayCompute(dateTimeStart.Value, Convert.ToInt32(numericUpDownDuration.Value));
+            DayCompute dayCompute = new DayCompute(dateTimeStart.Value, Convert.ToInt32(numericDuration.Value));
             SetupDayComputer(dayCompute);
 
             int duration = dateTimeFinish.Value.Date.Subtract(dateTimeStart.Value.Date).Days;
-            numericUpDownDays.Value = duration + 1;
-            numericUpDownDuration.Value = dayCompute.CountByFinishDay(dateTimeStart.Value, dateTimeFinish.Value);
+            numericDays.Value = duration + 1;
+            numericDuration.Value = dayCompute.CountByFinishDay(dateTimeStart.Value, dateTimeFinish.Value);
         }
 
         private void btnCalculateByTotalDays_Click(object sender, EventArgs e)
         {
-            DayCompute dayCompute = new DayCompute(dateTimeStart.Value, Convert.ToInt32(numericUpDownDuration.Value));
+            DayCompute dayCompute = new DayCompute(dateTimeStart.Value, Convert.ToInt32(numericDuration.Value));
             SetupDayComputer(dayCompute);
 
-            dateTimeFinish.Value = dateTimeStart.Value.AddDays(Convert.ToInt32(numericUpDownDays.Value) - 1);
-            numericUpDownDuration.Value = dayCompute.CountByFinishDay(dateTimeStart.Value, dateTimeFinish.Value);
+            dateTimeFinish.Value = dateTimeStart.Value.AddDays(Convert.ToInt32(numericDays.Value) - 1);
+            numericDuration.Value = dayCompute.CountByFinishDay(dateTimeStart.Value, dateTimeFinish.Value);
         }
 
         private void btnSearchSponsor_Click(object sender, EventArgs e)
@@ -320,8 +320,8 @@ namespace HuaChun_DailyReport
         {
             if (radioBtnCalenderDay.Checked == true)
             {
-                numericUpDownDuration.ReadOnly = false;
-                numericUpDownDays.ReadOnly = true;
+                numericDuration.ReadOnly = false;
+                numericDays.ReadOnly = true;
                 dateTimeFinish.Enabled = false;
                 groupBox2.Enabled = false;
                 checkBoxHoliday.Enabled = false;
@@ -329,17 +329,17 @@ namespace HuaChun_DailyReport
                 btnCalculateByFinish.Enabled = false;
                 btnCalculateByTotalDays.Enabled = false;
 
-                int v1 = (int)Math.Round((double)numericUpDownDuration.Value / 0.5);
-                numericUpDownDuration.Value = Convert.ToDecimal(v1 * 0.5);
-                numericUpDownDays.Value = numericUpDownDuration.Value;
+                int v1 = (int)Math.Round((double)numericDuration.Value / 0.5);
+                numericDuration.Value = Convert.ToDecimal(v1 * 0.5);
+                numericDays.Value = numericDuration.Value;
                 dateTimeFinish.Value = dateTimeStart.Value.AddDays(Convert.ToInt16(Math.Ceiling(v1 * 0.5))-1);
                 
 
             }
             else if (radioBtnWorkingDay.Checked == true)
             {
-                numericUpDownDuration.ReadOnly = false;
-                numericUpDownDays.ReadOnly = false;
+                numericDuration.ReadOnly = false;
+                numericDays.ReadOnly = false;
                 dateTimeFinish.Enabled = true;
                 
                 groupBox2.Enabled = true;
@@ -350,8 +350,8 @@ namespace HuaChun_DailyReport
             }
             else if (radioBtnRestrictSchedule.Checked == true)
             {
-                numericUpDownDuration.ReadOnly = true;
-                numericUpDownDays.ReadOnly = true;
+                numericDuration.ReadOnly = true;
+                numericDays.ReadOnly = true;
                 dateTimeFinish.Enabled = true;
                 groupBox2.Enabled = false;
                 checkBoxHoliday.Enabled = false;
@@ -362,31 +362,31 @@ namespace HuaChun_DailyReport
                 int duration = dateTimeFinish.Value.Date.Subtract(dateTimeStart.Value.Date).Days;
                 //if (hours > 20)
                 //    duration++;
-                this.numericUpDownDays.Value = Convert.ToDecimal(duration) + 1;
-                this.numericUpDownDuration.Value = Convert.ToDecimal(duration) + 1;
+                this.numericDays.Value = Convert.ToDecimal(duration) + 1;
+                this.numericDuration.Value = Convert.ToDecimal(duration) + 1;
                 
             }
         }
 
         private void numericUpDownDays_ValueChanged(object sender, EventArgs e)
         {
-            int v1 = (int)Math.Round((double)numericUpDownDays.Value / 0.5);
-            numericUpDownDays.Value = Convert.ToDecimal(v1 * 0.5);
+            int v1 = (int)Math.Round((double)numericDays.Value / 0.5);
+            numericDays.Value = Convert.ToDecimal(v1 * 0.5);
 
             if (radioBtnCalenderDay.Checked == true)
             {
-                numericUpDownDuration.Value = numericUpDownDays.Value;
+                numericDuration.Value = numericDays.Value;
             }
         }
 
         private void numericUpDownDuration_ValueChanged(object sender, EventArgs e)
         {
-            int v1 = (int)Math.Round((double)numericUpDownDuration.Value / 0.5);
-            numericUpDownDuration.Value = Convert.ToDecimal(v1 * 0.5);
+            int v1 = (int)Math.Round((double)numericDuration.Value / 0.5);
+            numericDuration.Value = Convert.ToDecimal(v1 * 0.5);
 
             if (radioBtnCalenderDay.Checked == true)
             {
-                numericUpDownDays.Value = numericUpDownDuration.Value;
+                numericDays.Value = numericDuration.Value;
                 dateTimeFinish.Value = dateTimeStart.Value.AddDays(Convert.ToInt16(Math.Ceiling(v1 * 0.5)) - 1);
             }
         }
@@ -404,8 +404,8 @@ namespace HuaChun_DailyReport
             {
                 if (radioBtnRestrictSchedule.Checked == true)
                 {
-                    this.numericUpDownDays.Value = Convert.ToDecimal(duration) + 1;
-                    this.numericUpDownDuration.Value = Convert.ToDecimal(duration) + 1;
+                    this.numericDays.Value = Convert.ToDecimal(duration) + 1;
+                    this.numericDuration.Value = Convert.ToDecimal(duration) + 1;
                 }
             }
         }
@@ -421,8 +421,8 @@ namespace HuaChun_DailyReport
             }
             if (radioBtnRestrictSchedule.Checked == true)
             {
-                this.numericUpDownDays.Value = Convert.ToDecimal(duration) + 1;
-                this.numericUpDownDuration.Value = Convert.ToDecimal(duration) + 1;
+                this.numericDays.Value = Convert.ToDecimal(duration) + 1;
+                this.numericDuration.Value = Convert.ToDecimal(duration) + 1;
             }
         }
     }

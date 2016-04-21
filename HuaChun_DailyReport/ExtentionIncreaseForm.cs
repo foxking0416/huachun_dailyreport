@@ -83,7 +83,7 @@ namespace HuaChun_DailyReport
             conn.Close();
         }
 
-        protected void btnOK_Click(object sender, EventArgs e)
+        protected virtual void btnOK_Click(object sender, EventArgs e)
         {
             label12.Visible = false;
             label13.Visible = false;

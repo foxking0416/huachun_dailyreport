@@ -55,7 +55,7 @@ namespace HuaChun_DailyReport
             this.dateTimeFilledDate.Value = Functions.TransferSQLDateToDateTime(writedate);
         }
 
-        protected void btnOK_Click(object sender, EventArgs e)
+        protected override void btnOK_Click(object sender, EventArgs e)
         {
             label12.Visible = false;
             label13.Visible = false;
@@ -76,15 +76,6 @@ namespace HuaChun_DailyReport
                 return;
             if (textBoxTotalValue.Text == string.Empty)
                 return;
-
-            string[] sameNo = SQL.Read1DArray_SQL_Data("grantnumber", "extendduration", "project = '" + ProjectNumber + "' AND grantnumber = '" + textBoxGrantNumber.Text + "'");
-            if (sameNo.Length != 0)
-            {
-                label12.Text = "已存在相同核准文號";
-                label12.Visible = true;
-                return;
-            }
-
 
             InsertIntoDB();
             this.Close();

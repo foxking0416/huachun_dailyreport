@@ -53,7 +53,7 @@
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.textBoxAmount = new System.Windows.Forms.TextBox();
-            this.dateTimeSigned = new System.Windows.Forms.DateTimePicker();
+            this.dateTimeBid = new System.Windows.Forms.DateTimePicker();
             this.dateTimeStart = new System.Windows.Forms.DateTimePicker();
             this.dateTimeFinish = new System.Windows.Forms.DateTimePicker();
             this.label13 = new System.Windows.Forms.Label();
@@ -81,8 +81,8 @@
             this.textBoxHandle4 = new System.Windows.Forms.TextBox();
             this.textBoxOnsite = new System.Windows.Forms.TextBox();
             this.textBoxSecurity = new System.Windows.Forms.TextBox();
-            this.numericUpDownDays = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDownDuration = new System.Windows.Forms.NumericUpDown();
+            this.numericDays = new System.Windows.Forms.NumericUpDown();
+            this.numericDuration = new System.Windows.Forms.NumericUpDown();
             this.label24 = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
             this.label26 = new System.Windows.Forms.Label();
@@ -104,8 +104,8 @@
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.btnCalculateByTotalDays = new System.Windows.Forms.Button();
             this.btnCalculateByFinish = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownDays)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownDuration)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericDays)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericDuration)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -343,13 +343,13 @@
             this.textBoxAmount.Size = new System.Drawing.Size(200, 22);
             this.textBoxAmount.TabIndex = 23;
             // 
-            // dateTimeSigned
+            // dateTimeBid
             // 
-            this.dateTimeSigned.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateTimeSigned.Location = new System.Drawing.Point(410, 47);
-            this.dateTimeSigned.Name = "dateTimeSigned";
-            this.dateTimeSigned.Size = new System.Drawing.Size(200, 22);
-            this.dateTimeSigned.TabIndex = 22;
+            this.dateTimeBid.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateTimeBid.Location = new System.Drawing.Point(410, 47);
+            this.dateTimeBid.Name = "dateTimeBid";
+            this.dateTimeBid.Size = new System.Drawing.Size(200, 22);
+            this.dateTimeBid.TabIndex = 22;
             // 
             // dateTimeStart
             // 
@@ -612,60 +612,60 @@
             this.textBoxSecurity.Size = new System.Drawing.Size(165, 22);
             this.textBoxSecurity.TabIndex = 12;
             // 
-            // numericUpDownDays
+            // numericDays
             // 
-            this.numericUpDownDays.DecimalPlaces = 1;
-            this.numericUpDownDays.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.numericUpDownDays.Increment = new decimal(new int[] {
+            this.numericDays.DecimalPlaces = 1;
+            this.numericDays.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.numericDays.Increment = new decimal(new int[] {
             5,
             0,
             0,
             65536});
-            this.numericUpDownDays.Location = new System.Drawing.Point(410, 247);
-            this.numericUpDownDays.Maximum = new decimal(new int[] {
+            this.numericDays.Location = new System.Drawing.Point(410, 247);
+            this.numericDays.Maximum = new decimal(new int[] {
             10000,
             0,
             0,
             0});
-            this.numericUpDownDays.Name = "numericUpDownDays";
-            this.numericUpDownDays.Size = new System.Drawing.Size(200, 22);
-            this.numericUpDownDays.TabIndex = 27;
-            this.numericUpDownDays.Value = new decimal(new int[] {
+            this.numericDays.Name = "numericDays";
+            this.numericDays.Size = new System.Drawing.Size(200, 22);
+            this.numericDays.TabIndex = 27;
+            this.numericDays.Value = new decimal(new int[] {
             1,
             0,
             0,
             0});
-            this.numericUpDownDays.ValueChanged += new System.EventHandler(this.numericUpDownDays_ValueChanged);
+            this.numericDays.ValueChanged += new System.EventHandler(this.numericUpDownDays_ValueChanged);
             // 
-            // numericUpDownDuration
+            // numericDuration
             // 
-            this.numericUpDownDuration.DecimalPlaces = 1;
-            this.numericUpDownDuration.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.numericUpDownDuration.Increment = new decimal(new int[] {
+            this.numericDuration.DecimalPlaces = 1;
+            this.numericDuration.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.numericDuration.Increment = new decimal(new int[] {
             5,
             0,
             0,
             65536});
-            this.numericUpDownDuration.Location = new System.Drawing.Point(410, 167);
-            this.numericUpDownDuration.Maximum = new decimal(new int[] {
+            this.numericDuration.Location = new System.Drawing.Point(410, 167);
+            this.numericDuration.Maximum = new decimal(new int[] {
             10000,
             0,
             0,
             0});
-            this.numericUpDownDuration.Minimum = new decimal(new int[] {
+            this.numericDuration.Minimum = new decimal(new int[] {
             1,
             0,
             0,
             0});
-            this.numericUpDownDuration.Name = "numericUpDownDuration";
-            this.numericUpDownDuration.Size = new System.Drawing.Size(200, 22);
-            this.numericUpDownDuration.TabIndex = 25;
-            this.numericUpDownDuration.Value = new decimal(new int[] {
+            this.numericDuration.Name = "numericDuration";
+            this.numericDuration.Size = new System.Drawing.Size(200, 22);
+            this.numericDuration.TabIndex = 25;
+            this.numericDuration.Value = new decimal(new int[] {
             1,
             0,
             0,
             0});
-            this.numericUpDownDuration.ValueChanged += new System.EventHandler(this.numericUpDownDuration_ValueChanged);
+            this.numericDuration.ValueChanged += new System.EventHandler(this.numericUpDownDuration_ValueChanged);
             // 
             // label24
             // 
@@ -892,8 +892,8 @@
             this.Controls.Add(this.label30);
             this.Controls.Add(this.label29);
             this.Controls.Add(this.label28);
-            this.Controls.Add(this.numericUpDownDuration);
-            this.Controls.Add(this.numericUpDownDays);
+            this.Controls.Add(this.numericDuration);
+            this.Controls.Add(this.numericDays);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.btnSearchQA);
             this.Controls.Add(this.btnSearchSecurity);
@@ -902,7 +902,7 @@
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.dateTimeFinish);
             this.Controls.Add(this.dateTimeStart);
-            this.Controls.Add(this.dateTimeSigned);
+            this.Controls.Add(this.dateTimeBid);
             this.Controls.Add(this.textBoxContractNo);
             this.Controls.Add(this.textBoxSecurity);
             this.Controls.Add(this.textBoxOnsite);
@@ -955,8 +955,8 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Name = "ProjectIncreaseForm";
             this.Text = "工程新增作業";
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownDays)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownDuration)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericDays)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericDuration)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -995,7 +995,7 @@
         protected System.Windows.Forms.Label label11;
         protected System.Windows.Forms.Label label12;
         protected System.Windows.Forms.TextBox textBoxAmount;
-        protected System.Windows.Forms.DateTimePicker dateTimeSigned;
+        protected System.Windows.Forms.DateTimePicker dateTimeBid;
         protected System.Windows.Forms.DateTimePicker dateTimeStart;
         protected System.Windows.Forms.DateTimePicker dateTimeFinish;
         protected System.Windows.Forms.Label label13;
@@ -1023,8 +1023,8 @@
         protected System.Windows.Forms.TextBox textBoxHandle4;
         protected System.Windows.Forms.TextBox textBoxOnsite;
         protected System.Windows.Forms.TextBox textBoxSecurity;
-        protected System.Windows.Forms.NumericUpDown numericUpDownDays;
-        protected System.Windows.Forms.NumericUpDown numericUpDownDuration;
+        protected System.Windows.Forms.NumericUpDown numericDays;
+        protected System.Windows.Forms.NumericUpDown numericDuration;
         protected System.Windows.Forms.Label label24;
         protected System.Windows.Forms.Label label25;
         protected System.Windows.Forms.Label label26;

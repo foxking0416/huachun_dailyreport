@@ -21,6 +21,18 @@ namespace HuaChun_DailyReport
             Initialize();
         }
 
+        public ToolSearchForm(DailyReportIncreaseForm form, int index, int row, int column)
+        {
+            formType = 1;
+            tabIndex = index;
+            rowIndex = row;
+            columnIndex = column;
+            InitializeComponent();
+            reportForm = form;
+            InitializeToolSearchForm();
+            Initialize();
+        }
+
         private void InitializeToolSearchForm()
         {
             this.Text = "搜尋機具";
@@ -38,8 +50,14 @@ namespace HuaChun_DailyReport
         protected override void btnCheck_Click(object sender, EventArgs e)
         {
             string number = dataGridView1[0, dataGridView1.CurrentRow.Index].Value.ToString();
-            editForm.LoadInformation(number);
-
+            string name = dataGridView1[1, dataGridView1.CurrentRow.Index].Value.ToString();
+            if (formType == 0)
+                editForm.LoadInformation(number);
+            else if (formType == 1)
+            {
+                reportForm.SetDataGridViewValue(2, number, columnIndex, rowIndex);
+                reportForm.SetDataGridViewValue(2, name, columnIndex + 1, rowIndex);
+            }
             this.Close();
         }
     }

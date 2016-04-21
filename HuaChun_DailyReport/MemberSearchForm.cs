@@ -13,7 +13,6 @@ namespace HuaChun_DailyReport
     {
         private MemberEditForm editForm;
         private TextBox textBoxMember;
-        private int formOrText;
 
         public MemberSearchForm(MemberEditForm form)
         {
@@ -21,7 +20,19 @@ namespace HuaChun_DailyReport
             editForm = form;
             InitializeMaterialSearchForm();
             Initialize();
-            formOrText = 0;
+            formType = 0;
+        }
+
+        public MemberSearchForm(DailyReportIncreaseForm form, int index, int row, int column)
+        {
+            formType = 1;
+            tabIndex = index;
+            rowIndex = row;
+            columnIndex = column;
+            InitializeComponent();
+            reportForm = form;
+            InitializeMaterialSearchForm();
+            Initialize();
         }
 
         public MemberSearchForm(TextBox textbox)
@@ -30,7 +41,7 @@ namespace HuaChun_DailyReport
             textBoxMember = textbox;
             InitializeMaterialSearchForm();
             Initialize();
-            formOrText = 1;
+            formType = 2;
         }
 
         private void InitializeMaterialSearchForm()
@@ -49,16 +60,17 @@ namespace HuaChun_DailyReport
 
         protected override void btnCheck_Click(object sender, EventArgs e)
         {
-            if (formOrText == 0)
-            {
-                string number = dataGridView1[0, dataGridView1.CurrentRow.Index].Value.ToString();
+            string number = dataGridView1[0, dataGridView1.CurrentRow.Index].Value.ToString();
+            string name = dataGridView1[1, dataGridView1.CurrentRow.Index].Value.ToString();
+            if (formType == 0)
                 editForm.LoadInformation(number);
-            }
-            else if (formOrText == 1)
+            if (formType == 1)
             {
-                string name = dataGridView1[1, dataGridView1.CurrentRow.Index].Value.ToString();
-                textBoxMember.Text = name;
+                reportForm.SetDataGridViewValue(4, number, columnIndex, rowIndex);
+                reportForm.SetDataGridViewValue(4, name, columnIndex + 1, rowIndex);
             }
+            else if (formType == 2)
+                textBoxMember.Text = name;
             this.Close();
         }
     }
