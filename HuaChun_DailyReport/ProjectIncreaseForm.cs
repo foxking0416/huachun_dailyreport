@@ -29,7 +29,7 @@ namespace HuaChun_DailyReport
         {
             dbHost = AppSetting.LoadInitialSetting("DB_IP", "127.0.0.1");
             dbUser = AppSetting.LoadInitialSetting("DB_USER", "root");
-            dbPass = AppSetting.LoadInitialSetting("DB_PASSWORD", "chichi1219");
+            dbPass = AppSetting.LoadInitialSetting("DB_PASSWORD", "123");
             dbName = AppSetting.LoadInitialSetting("DB_NAME", "huachun");
 
             SQL = new MySQL(dbHost, dbUser, dbPass, dbName);
@@ -129,7 +129,7 @@ namespace HuaChun_DailyReport
             }
 
             if(checkBoxHoliday.Checked)
-                commandStr = commandStr + "1" + "','";
+                commandStr = commandStr + "1";
             else
                 commandStr = commandStr + "0";
             commandStr = commandStr + "')";
@@ -174,75 +174,79 @@ namespace HuaChun_DailyReport
             this.numericDuration.Value = 0;
         }
 
-         
-        private void SetupDayComputer(DayCompute dayCompute)
-        {
-            string[] holidays = SQL.Read1DArrayNoCondition_SQL_Data("date", "holiday");
-            for (int i = 0; i < holidays.Length; i++)
-            {
-                DateTime holiday = Functions.TransferSQLDateToDateTime(holidays[i]);
-                dayCompute.AddHoliday(holiday);
-            }
-
-            if (radioBtnNoWeekend.Checked == true)
-            {
-                dayCompute.countSaturday = false;
-                dayCompute.countSunday = false;
-                if (checkBoxHoliday.Checked == true)
-                    dayCompute.countHoliday = true;
-                else
-                    dayCompute.countHoliday = false;
-            }
-            else if (radioBtnSun.Checked == true)
-            {
-                dayCompute.countSaturday = false;
-                dayCompute.countSunday = true;
-                if (checkBoxHoliday.Checked == true)
-                    dayCompute.countHoliday = true;
-                else
-                    dayCompute.countHoliday = false;
-            }
-            else if (radioBtnSatSun.Checked == true)
-            {
-                dayCompute.countSaturday = true;
-                dayCompute.countSunday = true;
-                if (checkBoxHoliday.Checked == true)
-                    dayCompute.countHoliday = true;
-                else
-                    dayCompute.countHoliday = false;
-            }
-        }
-
-        private void btnCalculateByDuration_Click(object sender, EventArgs e)
+        private void calculateByDuration()
         {
             DayCompute dayCompute = new DayCompute(dateTimeStart.Value, Convert.ToInt32(numericDuration.Value));
 
-            SetupDayComputer(dayCompute);
+            //設定工期計算方式 
+            if (radioBtnRestrictSchedule.Checked == true || radioBtnCalenderDay.Checked == true)
+            {
+                dayCompute.countSaturday = false;
+                dayCompute.countSunday = false;
+                dayCompute.countHoliday = false;
+            }
+            else
+            {
+                if (radioBtnNoWeekend.Checked == true)
+                {
+                    dayCompute.countSaturday = false;//表示週六要施工
+                    dayCompute.countSunday = false;//表示週日要施工
+                }
+                else if (radioBtnSun.Checked == true)
+                {
+                    dayCompute.countSaturday = false;//表示週六要施工
+                    dayCompute.countSunday = true;//表示週日不施工
+                }
+                else if (radioBtnSatSun.Checked == true)
+                {
+                    dayCompute.countSaturday = true;//表示週六不施工
+                    dayCompute.countSunday = true;//表示週日不施工
+                }
+
+                if (checkBoxHoliday.Checked == true)
+                    dayCompute.countHoliday = true;//表示國定假日不施工
+                else
+                    dayCompute.countHoliday = false;//表示國定假日依然要施工
+            }
 
 
-            DateTime FinishDate =  dayCompute.CountByDuration(dateTimeStart.Value, Convert.ToInt32(numericDuration.Value));
+            DateTime FinishDate = dayCompute.CountByDuration(dateTimeStart.Value, Convert.ToInt32(numericDuration.Value));
             dateTimeFinish.Value = FinishDate;
             numericDays.Value = FinishDate.Subtract(dateTimeStart.Value).Days + 1;
         }
 
-        private void btnCalculateByFinish_Click(object sender, EventArgs e)
-        {
-            DayCompute dayCompute = new DayCompute(dateTimeStart.Value, Convert.ToInt32(numericDuration.Value));
-            SetupDayComputer(dayCompute);
+        //private void btnCalculateByDuration_Click(object sender, EventArgs e)
+        //{
+        //    DayCompute dayCompute = new DayCompute(dateTimeStart.Value, Convert.ToInt32(numericDuration.Value));
 
-            int duration = dateTimeFinish.Value.Date.Subtract(dateTimeStart.Value.Date).Days;
-            numericDays.Value = duration + 1;
-            numericDuration.Value = dayCompute.CountByFinishDay(dateTimeStart.Value, dateTimeFinish.Value);
-        }
+        //    SetupDayComputer(dayCompute);
 
-        private void btnCalculateByTotalDays_Click(object sender, EventArgs e)
-        {
-            DayCompute dayCompute = new DayCompute(dateTimeStart.Value, Convert.ToInt32(numericDuration.Value));
-            SetupDayComputer(dayCompute);
 
-            dateTimeFinish.Value = dateTimeStart.Value.AddDays(Convert.ToInt32(numericDays.Value) - 1);
-            numericDuration.Value = dayCompute.CountByFinishDay(dateTimeStart.Value, dateTimeFinish.Value);
-        }
+        //    DateTime FinishDate =  dayCompute.CountByDuration(dateTimeStart.Value, Convert.ToInt32(numericDuration.Value));
+        //    dateTimeFinish.Value = FinishDate;
+        //    numericDays.Value = FinishDate.Subtract(dateTimeStart.Value).Days + 1;
+        //}
+
+
+
+        //private void btnCalculateByFinish_Click(object sender, EventArgs e)
+        //{
+        //    DayCompute dayCompute = new DayCompute(dateTimeStart.Value, Convert.ToInt32(numericDuration.Value));
+        //    SetupDayComputer(dayCompute);
+
+        //    int duration = dateTimeFinish.Value.Date.Subtract(dateTimeStart.Value.Date).Days;
+        //    numericDays.Value = duration + 1;
+        //    numericDuration.Value = dayCompute.CountByFinishDay(dateTimeStart.Value, dateTimeFinish.Value);
+        //}
+
+        //private void btnCalculateByTotalDays_Click(object sender, EventArgs e)
+        //{
+        //    DayCompute dayCompute = new DayCompute(dateTimeStart.Value, Convert.ToInt32(numericDuration.Value));
+        //    SetupDayComputer(dayCompute);
+
+        //    dateTimeFinish.Value = dateTimeStart.Value.AddDays(Convert.ToInt32(numericDays.Value) - 1);
+        //    numericDuration.Value = dayCompute.CountByFinishDay(dateTimeStart.Value, dateTimeFinish.Value);
+        //}
 
         private void btnSearchSponsor_Click(object sender, EventArgs e)
         {
@@ -308,7 +312,7 @@ namespace HuaChun_DailyReport
 
 
             InsertIntoDB();
-            Clear();
+            this.Close();
         }
 
         private void buttonExit_Click(object sender, EventArgs e)
@@ -318,7 +322,22 @@ namespace HuaChun_DailyReport
 
         private void radioButton123_CheckedChanged(object sender, EventArgs e)
         {
-            if (radioBtnCalenderDay.Checked == true)
+            if (radioBtnRestrictSchedule.Checked == true)//限期完工
+            {
+                numericDuration.ReadOnly = true;
+                numericDays.ReadOnly = true;
+                dateTimeFinish.Enabled = true;
+                groupBox2.Enabled = false;
+                checkBoxHoliday.Enabled = false;
+                btnCalculateByDuration.Enabled = false;
+                btnCalculateByFinish.Enabled = false;
+                btnCalculateByTotalDays.Enabled = false;
+                int duration = dateTimeFinish.Value.Date.Subtract(dateTimeStart.Value.Date).Days;
+                this.numericDays.Value = Convert.ToDecimal(duration) + 1;
+                this.numericDuration.Value = Convert.ToDecimal(duration) + 1;
+                
+            }
+            else if (radioBtnCalenderDay.Checked == true)//日曆天
             {
                 numericDuration.ReadOnly = false;
                 numericDays.ReadOnly = true;
@@ -336,35 +355,18 @@ namespace HuaChun_DailyReport
                 
 
             }
-            else if (radioBtnWorkingDay.Checked == true)
+            else if (radioBtnWorkingDay.Checked == true)//工作天
             {
                 numericDuration.ReadOnly = false;
-                numericDays.ReadOnly = false;
-                dateTimeFinish.Enabled = true;
+                numericDays.ReadOnly = true;
+                dateTimeFinish.Enabled = false;
                 
                 groupBox2.Enabled = true;
                 checkBoxHoliday.Enabled = true;
                 btnCalculateByDuration.Enabled = true;
                 btnCalculateByFinish.Enabled = true;
                 btnCalculateByTotalDays.Enabled = true;
-            }
-            else if (radioBtnRestrictSchedule.Checked == true)
-            {
-                numericDuration.ReadOnly = true;
-                numericDays.ReadOnly = true;
-                dateTimeFinish.Enabled = true;
-                groupBox2.Enabled = false;
-                checkBoxHoliday.Enabled = false;
-                btnCalculateByDuration.Enabled = false;
-                btnCalculateByFinish.Enabled = false;
-                btnCalculateByTotalDays.Enabled = false;
-                //int hours = dateTimeFinish.Value.Subtract(dateTimeStart.Value).Hours;
-                int duration = dateTimeFinish.Value.Date.Subtract(dateTimeStart.Value.Date).Days;
-                //if (hours > 20)
-                //    duration++;
-                this.numericDays.Value = Convert.ToDecimal(duration) + 1;
-                this.numericDuration.Value = Convert.ToDecimal(duration) + 1;
-                
+                calculateByDuration();
             }
         }
 
@@ -389,6 +391,15 @@ namespace HuaChun_DailyReport
                 numericDays.Value = numericDuration.Value;
                 dateTimeFinish.Value = dateTimeStart.Value.AddDays(Convert.ToInt16(Math.Ceiling(v1 * 0.5)) - 1);
             }
+            else if (radioBtnWorkingDay.Checked == true)
+            {
+                calculateByDuration();
+            }
+        }
+
+        private void workingDayConditionChanged(object sender, EventArgs e)
+        {
+            calculateByDuration();
         }
 
         private void dateTimeFinish_ValueChanged(object sender, EventArgs e)

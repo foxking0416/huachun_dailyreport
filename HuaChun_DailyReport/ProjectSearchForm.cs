@@ -14,14 +14,14 @@ namespace HuaChun_DailyReport
         private int inputFormType;
         private ProjectEditForm editForm;
         private DailyReportIncreaseForm reportForm;
-
+        private QueryFormBase queryForm;
 
         public ProjectSearchForm(ProjectEditForm form)
         {
             inputFormType = 0;
             InitializeComponent();
             editForm = form;
-            InitializeMaterialSearchForm();
+            InitializeProjectSearchForm();
             Initialize();
         }
 
@@ -30,11 +30,20 @@ namespace HuaChun_DailyReport
             inputFormType = 1;
             InitializeComponent();
             reportForm = form;
-            InitializeMaterialSearchForm();
+            InitializeProjectSearchForm();
             Initialize();
         }
 
-        private void InitializeMaterialSearchForm()
+        public ProjectSearchForm(QueryFormBase form)
+        {
+            inputFormType = 2;
+            InitializeComponent();
+            queryForm = form;
+            InitializeProjectSearchForm();
+            Initialize();
+        }
+
+        private void InitializeProjectSearchForm()
         {
             this.Text = "搜尋工程";
             this.DB_TableName = "project_info";
@@ -57,7 +66,8 @@ namespace HuaChun_DailyReport
                 editForm.LoadInformation(number);
             else if (inputFormType == 1)
                 reportForm.LoadProjectInfo(number);
-
+            else if (inputFormType == 2)
+                queryForm.LoadProjectInfo(number);
             this.Close();
         }
     }

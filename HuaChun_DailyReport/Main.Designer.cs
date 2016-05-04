@@ -69,9 +69,9 @@
             this.MenuItemWeatherChart = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuItemNonworkingDayChart = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuItemDailyReportList = new System.Windows.Forms.ToolStripMenuItem();
-            this.不計工期明細表ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.不計工期統計表ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.完工表ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuItemNonworkingDayDetail = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuItemNonworkingDayStatistic = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuItemFinishChart = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.MenuItemMaterialList = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuItemVendorWorkingList = new System.Windows.Forms.ToolStripMenuItem();
@@ -366,11 +366,11 @@
             this.MenuItemEmployeeList,
             this.toolStripSeparator6,
             this.MenuItemWeatherChart,
-            this.MenuItemNonworkingDayChart,
             this.MenuItemDailyReportList,
-            this.不計工期明細表ToolStripMenuItem,
-            this.不計工期統計表ToolStripMenuItem,
-            this.完工表ToolStripMenuItem,
+            this.MenuItemNonworkingDayChart,
+            this.MenuItemNonworkingDayDetail,
+            this.MenuItemNonworkingDayStatistic,
+            this.MenuItemFinishChart,
             this.toolStripSeparator5,
             this.MenuItemMaterialList,
             this.MenuItemVendorWorkingList,
@@ -422,23 +422,26 @@
             this.MenuItemDailyReportList.Text = "日報明細表";
             this.MenuItemDailyReportList.Click += new System.EventHandler(this.MenuItemDailyReportList_Click);
             // 
-            // 不計工期明細表ToolStripMenuItem
+            // MenuItemNonworkingDayDetail
             // 
-            this.不計工期明細表ToolStripMenuItem.Name = "不計工期明細表ToolStripMenuItem";
-            this.不計工期明細表ToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
-            this.不計工期明細表ToolStripMenuItem.Text = "不計工期明細表";
+            this.MenuItemNonworkingDayDetail.Name = "MenuItemNonworkingDayDetail";
+            this.MenuItemNonworkingDayDetail.Size = new System.Drawing.Size(158, 22);
+            this.MenuItemNonworkingDayDetail.Text = "不計工期明細表";
+            this.MenuItemNonworkingDayDetail.Click += new System.EventHandler(this.MenuItemNonworkingDayDetail_Click);
             // 
-            // 不計工期統計表ToolStripMenuItem
+            // MenuItemNonworkingDayStatistic
             // 
-            this.不計工期統計表ToolStripMenuItem.Name = "不計工期統計表ToolStripMenuItem";
-            this.不計工期統計表ToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
-            this.不計工期統計表ToolStripMenuItem.Text = "不計工期統計表";
+            this.MenuItemNonworkingDayStatistic.Name = "MenuItemNonworkingDayStatistic";
+            this.MenuItemNonworkingDayStatistic.Size = new System.Drawing.Size(158, 22);
+            this.MenuItemNonworkingDayStatistic.Text = "不計工期統計表";
+            this.MenuItemNonworkingDayStatistic.Click += new System.EventHandler(this.MenuItemNonworkingDayStatistic_Click);
             // 
-            // 完工表ToolStripMenuItem
+            // MenuItemFinishChart
             // 
-            this.完工表ToolStripMenuItem.Name = "完工表ToolStripMenuItem";
-            this.完工表ToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
-            this.完工表ToolStripMenuItem.Text = "完工表";
+            this.MenuItemFinishChart.Name = "MenuItemFinishChart";
+            this.MenuItemFinishChart.Size = new System.Drawing.Size(158, 22);
+            this.MenuItemFinishChart.Text = "完工表";
+            this.MenuItemFinishChart.Click += new System.EventHandler(this.MenuItemFinishChart_Click);
             // 
             // toolStripSeparator5
             // 
@@ -543,6 +546,7 @@
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.menuStrip1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Main";
             this.Text = "Form1";
@@ -589,9 +593,9 @@
         private System.Windows.Forms.ToolStripMenuItem MenuItemNonworkingDayChart;
         private System.Windows.Forms.ToolStripMenuItem MenuItemDailyReportList;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
-        private System.Windows.Forms.ToolStripMenuItem 不計工期明細表ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 不計工期統計表ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 完工表ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem MenuItemNonworkingDayDetail;
+        private System.Windows.Forms.ToolStripMenuItem MenuItemNonworkingDayStatistic;
+        private System.Windows.Forms.ToolStripMenuItem MenuItemFinishChart;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
         private System.Windows.Forms.ToolStripMenuItem MenuItemMaterialList;
         private System.Windows.Forms.ToolStripMenuItem MenuItemVendorWorkingList;

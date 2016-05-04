@@ -204,7 +204,7 @@ namespace HuaChun_DailyReport
                 DialogResult result = MessageBox.Show("確定要刪除工期追加資料?", "確定", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
                 if (result == DialogResult.Yes)
                 {
-                    SQL.NoHistoryDelete_SQL("extendduration", "project = '" + this.textBoxProjectNo.Text + "' AND grantnumber = '" + grantNo + "'");
+                    SQL.NoHistoryDelete_SQL("extendduration", "project_no = '" + this.textBoxProjectNo.Text + "' AND grantnumber = '" + grantNo + "'");
                 }
             }
             else
@@ -440,29 +440,80 @@ namespace HuaChun_DailyReport
             dataTable.Clear();
 
             ArrayList array = new ArrayList();
-            string[] numbers = SQL.Read1DArray_SQL_Data("grantnumber", "extendduration", "project = '" + this.textBoxProjectNo.Text + "' ORDER BY grantdate ASC");
+            string[] numbers = SQL.Read1DArray_SQL_Data("grantnumber", "extendduration", "project_no = '" + this.textBoxProjectNo.Text + "' ORDER BY grantdate ASC");
+
+            int totalValue = Convert.ToInt32(this.textBoxAmount.Text);
+            int accuextendduration = 0;
+            int totalduration = Convert.ToInt32(this.numericDuration.Value);
 
             DataRow dataRow;
             for (int i = 1; i <= numbers.Length; i++)
             {
                 dataRow = dataTable.NewRow();
                 dataRow["No"] = i.ToString();
-                dataRow["核准日期"] = SQL.Read_SQL_data("grantdate", "extendduration", "project = '" + this.textBoxProjectNo.Text + "' && grantnumber = '" + numbers[i - 1] + "'");
-                dataRow["核准文號"] = SQL.Read_SQL_data("grantnumber", "extendduration", "project = '" + this.textBoxProjectNo.Text + "' && grantnumber = '" + numbers[i - 1] + "'");
-                dataRow["追加金額"] = SQL.Read_SQL_data("extendvalue", "extendduration", "project = '" + this.textBoxProjectNo.Text + "' && grantnumber = '" + numbers[i - 1] + "'");
-                dataRow["總金額"] = SQL.Read_SQL_data("totalvalue", "extendduration", "project = '" + this.textBoxProjectNo.Text + "' && grantnumber = '" + numbers[i - 1] + "'");
-                dataRow["追加起算日"] = SQL.Read_SQL_data("extendstartdate", "extendduration", "project = '" + this.textBoxProjectNo.Text + "' && grantnumber = '" + numbers[i - 1] + "'");
-                dataRow["追加工期"] = SQL.Read_SQL_data("extendduration", "extendduration", "project = '" + this.textBoxProjectNo.Text + "' && grantnumber = '" + numbers[i - 1] + "'");
-                dataRow["累計追加工期"] = SQL.Read_SQL_data("accuextendduration", "extendduration", "project = '" + this.textBoxProjectNo.Text + "' && grantnumber = '" + numbers[i - 1] + "'");
-                dataRow["總工期"] = SQL.Read_SQL_data("totalduration", "extendduration", "project = '" + this.textBoxProjectNo.Text + "' && grantnumber = '" + numbers[i - 1] + "'");
-                dataRow["契約完工日"] = SQL.Read_SQL_data("contract_finishdate", "extendduration", "project = '" + this.textBoxProjectNo.Text + "' && grantnumber = '" + numbers[i - 1] + "'");
-                dataRow["變動完工日"] = SQL.Read_SQL_data("modified_finishdate", "extendduration", "project = '" + this.textBoxProjectNo.Text + "' && grantnumber = '" + numbers[i - 1] + "'");
-                dataRow["填寫日期"] = SQL.Read_SQL_data("writedate", "extendduration", "project = '" + this.textBoxProjectNo.Text + "' && grantnumber = '" + numbers[i - 1] + "'");
+                dataRow["核准日期"] = Functions.TransferSQLDateToDateOnly(SQL.Read_SQL_data("grantdate", "extendduration", "project_no = '" + this.textBoxProjectNo.Text + "' && grantnumber = '" + numbers[i - 1] + "'"));
+                dataRow["核准文號"] = SQL.Read_SQL_data("grantnumber", "extendduration", "project_no = '" + this.textBoxProjectNo.Text + "' && grantnumber = '" + numbers[i - 1] + "'");
+                dataRow["追加金額"] = SQL.Read_SQL_data("extendvalue", "extendduration", "project_no = '" + this.textBoxProjectNo.Text + "' && grantnumber = '" + numbers[i - 1] + "'");
+                totalValue += Convert.ToInt32(SQL.Read_SQL_data("extendvalue", "extendduration", "project_no = '" + this.textBoxProjectNo.Text + "' && grantnumber = '" + numbers[i - 1] + "'"));
+                dataRow["總金額"] = totalValue;
+                dataRow["追加起算日"] = Functions.TransferSQLDateToDateOnly(SQL.Read_SQL_data("extendstartdate", "extendduration", "project_no = '" + this.textBoxProjectNo.Text + "' && grantnumber = '" + numbers[i - 1] + "'"));
+                int extendDuration = Convert.ToInt32(SQL.Read_SQL_data("extendduration", "extendduration", "project_no = '" + this.textBoxProjectNo.Text + "' && grantnumber = '" + numbers[i - 1] + "'"));
+                dataRow["追加工期"] = extendDuration;
+                accuextendduration += extendDuration;
+                dataRow["累計追加工期"] = accuextendduration;
+                totalduration += extendDuration;
+                dataRow["總工期"] = totalduration;
+                dataRow["契約完工日"] = Functions.GetDateTimeValueSlash(dateTimeFinish.Value);
+
+                DayCompute dayCompute = new DayCompute(dateTimeStart.Value, totalduration);
+
+                SetupDayComputer(dayCompute);
+                DateTime FinishDate = dayCompute.CountByDuration(dateTimeStart.Value, totalduration);
+
+                dataRow["變動完工日"] = Functions.GetDateTimeValueSlash(FinishDate);//SQL.Read_SQL_data("modified_finishdate", "extendduration", "project_no = '" + this.textBoxProjectNo.Text + "' && grantnumber = '" + numbers[i - 1] + "'");
+                dataRow["填寫日期"] = Functions.TransferSQLDateToDateOnly(SQL.Read_SQL_data("writedate", "extendduration", "project_no = '" + this.textBoxProjectNo.Text + "' && grantnumber = '" + numbers[i - 1] + "'"));
 
                 dataTable.Rows.Add(dataRow);
             }
+        }
 
+        private void SetupDayComputer(DayCompute dayCompute)
+        {
 
+            if (radioBtnRestrictSchedule.Checked == true || radioBtnCalenderDay.Checked == true)
+            {
+                dayCompute.countSaturday = false;
+                dayCompute.countSunday = false;
+                dayCompute.countHoliday = false;
+            }
+            else
+            {
+                if (radioBtnNoWeekend.Checked == true)
+                {
+                    dayCompute.countSaturday = false;//表示週六要施工
+                    dayCompute.countSunday = false;//表示週日要施工
+                }
+                else if (radioBtnSun.Checked == true)
+                {
+                    dayCompute.countSaturday = false;//表示週六要施工
+                    dayCompute.countSunday = true;//表示週日不施工
+                }
+                else if (radioBtnSatSun.Checked == true)
+                {
+                    dayCompute.countSaturday = true;//表示週六不施工
+                    dayCompute.countSunday = true;//表示週日不施工
+                }
+
+                if (checkBoxHoliday.Checked == true)
+                    dayCompute.countHoliday = true;//表示國定假日不施工
+                else
+                    dayCompute.countHoliday = false;//表示國定假日依然要施工
+            }
+        }
+
+        private void TimeAndValueChanged(object sender, EventArgs e)
+        {
+            LoadDataTable();
         }
     }
 }

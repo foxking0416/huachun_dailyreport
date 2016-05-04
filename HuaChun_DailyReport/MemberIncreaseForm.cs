@@ -32,7 +32,7 @@ namespace HuaChun_DailyReport
         {
             dbHost = AppSetting.LoadInitialSetting("DB_IP", "127.0.0.1");
             dbUser = AppSetting.LoadInitialSetting("DB_USER", "root");
-            dbPass = AppSetting.LoadInitialSetting("DB_PASSWORD", "chichi1219");
+            dbPass = AppSetting.LoadInitialSetting("DB_PASSWORD", "123");
             dbName = AppSetting.LoadInitialSetting("DB_NAME", "huachun");
 
             SQL = new MySQL(dbHost, dbUser, dbPass, dbName);

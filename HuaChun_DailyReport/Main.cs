@@ -158,31 +158,53 @@ namespace HuaChun_DailyReport
         }
         
 
-        //查詢
+        //查詢廠商明細表
         private void MenuItemVendorList_Click(object sender, EventArgs e)
         {
 
         }
-
+        //查詢人事明細表
         private void MenuItemEmployeeList_Click(object sender, EventArgs e)
         {
 
         }
-
+        //查詢晴雨表
         private void MenuItemWeatherChart_Click(object sender, EventArgs e)
         {
-
+            QueryWeatherChartForm queryWeatherChartForm = new QueryWeatherChartForm();
+            queryWeatherChartForm.ShowDialog();
         }
-
-        private void MenuItemNonworkingDayChart_Click(object sender, EventArgs e)
-        {
-
-        }
-
+        //查詢日報明細表
         private void MenuItemDailyReportList_Click(object sender, EventArgs e)
         {
-
+            QueryDailyReportListForm queryDailyReportListForm = new QueryDailyReportListForm();
+            queryDailyReportListForm.ShowDialog();
         }
+        //查詢不計工期圖表
+        private void MenuItemNonworkingDayChart_Click(object sender, EventArgs e)
+        {
+            QueryNonworkingDayChartForm queryNonworkingDayChartForm = new QueryNonworkingDayChartForm();
+            queryNonworkingDayChartForm.ShowDialog();
+        }
+        //查詢不計工期統計表
+        private void MenuItemNonworkingDayStatistic_Click(object sender, EventArgs e)
+        {
+            QueryNonworkingDayStatisticForm queryNonworkingDayStatisticForm = new QueryNonworkingDayStatisticForm();
+            queryNonworkingDayStatisticForm.ShowDialog();
+        }
+        //查詢不計工期明細表
+        private void MenuItemNonworkingDayDetail_Click(object sender, EventArgs e)
+        {
+            QueryNonworkingDayDetailForm queryNonworkingDayDetailForm = new QueryNonworkingDayDetailForm();
+            queryNonworkingDayDetailForm.ShowDialog();
+        }
+        //查詢完工表表
+        private void MenuItemFinishChart_Click(object sender, EventArgs e)
+        {
+            QueryFinishChartForm queryFinishChartForm = new QueryFinishChartForm();
+            queryFinishChartForm.ShowDialog();
+        }
+
 
 
 
@@ -243,15 +265,7 @@ namespace HuaChun_DailyReport
 
         private void button1_Click(object sender, EventArgs e)
         {
-            DayCompute dayCompute = new DayCompute(new DateTime(2016, 1, 1), 365);
-            dayCompute.AddHoliday(new DateTime(2015, 6, 30));
-            dayCompute.AddHoliday(new DateTime(2015, 7, 15));
-            dayCompute.AddHoliday(new DateTime(2015, 8, 4));
 
-            //DateTime endDate = dayCompute.GetEndDateWithoutSat(new DateTime(2015, 11, 6), 7);
-            DateTime endDate = dayCompute.CountByDuration(new DateTime(2015, 6, 20), 30);
-
-            int j = 0;
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -259,6 +273,10 @@ namespace HuaChun_DailyReport
             ClassPDFGenerator pdfGen = new ClassPDFGenerator();
 
         }
+
+  
+
+
 
 
 

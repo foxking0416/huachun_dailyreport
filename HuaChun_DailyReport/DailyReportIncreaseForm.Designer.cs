@@ -56,7 +56,7 @@
             this.textBox7 = new System.Windows.Forms.TextBox();
             this.textBox8 = new System.Windows.Forms.TextBox();
             this.textBoxAccumulateExtend = new System.Windows.Forms.TextBox();
-            this.textBox10 = new System.Windows.Forms.TextBox();
+            this.textBoxAccumulateDuration = new System.Windows.Forms.TextBox();
             this.textBox11 = new System.Windows.Forms.TextBox();
             this.textBox12 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -86,7 +86,7 @@
             this.label19 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.comboBoxWeatherAfternoon = new System.Windows.Forms.ComboBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.textBoxInterference = new System.Windows.Forms.TextBox();
             this.label21 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
             this.comboBoxCondition = new System.Windows.Forms.ComboBox();
@@ -98,6 +98,12 @@
             this.textBoxProjectName = new System.Windows.Forms.TextBox();
             this.btnAddData = new System.Windows.Forms.Button();
             this.btnDeleteData = new System.Windows.Forms.Button();
+            this.label25 = new System.Windows.Forms.Label();
+            this.label26 = new System.Windows.Forms.Label();
+            this.label27 = new System.Windows.Forms.Label();
+            this.textBoxAccumulateDays = new System.Windows.Forms.TextBox();
+            this.label28 = new System.Windows.Forms.Label();
+            this.textBoxDurationStartToCurrent = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewMaterial)).BeginInit();
@@ -181,7 +187,7 @@
             this.dataGridViewManPower.Location = new System.Drawing.Point(4, 4);
             this.dataGridViewManPower.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridViewManPower.Name = "dataGridViewManPower";
-            this.dataGridViewManPower.Size = new System.Drawing.Size(1153, 293);
+            this.dataGridViewManPower.Size = new System.Drawing.Size(1056, 293);
             this.dataGridViewManPower.TabIndex = 0;
             this.dataGridViewManPower.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewManPower_CellDoubleClick);
             // 
@@ -205,7 +211,7 @@
             this.dataGridViewTool.Location = new System.Drawing.Point(4, 4);
             this.dataGridViewTool.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridViewTool.Name = "dataGridViewTool";
-            this.dataGridViewTool.Size = new System.Drawing.Size(1153, 293);
+            this.dataGridViewTool.Size = new System.Drawing.Size(1056, 293);
             this.dataGridViewTool.TabIndex = 0;
             this.dataGridViewTool.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewTool_CellDoubleClick);
             // 
@@ -229,7 +235,7 @@
             this.dataGridViewOutsourcing.Location = new System.Drawing.Point(4, 4);
             this.dataGridViewOutsourcing.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridViewOutsourcing.Name = "dataGridViewOutsourcing";
-            this.dataGridViewOutsourcing.Size = new System.Drawing.Size(1153, 293);
+            this.dataGridViewOutsourcing.Size = new System.Drawing.Size(1056, 293);
             this.dataGridViewOutsourcing.TabIndex = 0;
             this.dataGridViewOutsourcing.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewOutsourcing_CellDoubleClick);
             // 
@@ -253,7 +259,7 @@
             this.dataGridViewVacation.Location = new System.Drawing.Point(4, 4);
             this.dataGridViewVacation.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridViewVacation.Name = "dataGridViewVacation";
-            this.dataGridViewVacation.Size = new System.Drawing.Size(1153, 293);
+            this.dataGridViewVacation.Size = new System.Drawing.Size(1056, 293);
             this.dataGridViewVacation.TabIndex = 0;
             this.dataGridViewVacation.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewVacation_CellDoubleClick);
             // 
@@ -330,7 +336,7 @@
             // 
             this.textBoxContractDuration.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.textBoxContractDuration.Enabled = false;
-            this.textBoxContractDuration.Location = new System.Drawing.Point(101, 79);
+            this.textBoxContractDuration.Location = new System.Drawing.Point(101, 110);
             this.textBoxContractDuration.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxContractDuration.Name = "textBoxContractDuration";
             this.textBoxContractDuration.Size = new System.Drawing.Size(65, 22);
@@ -340,7 +346,7 @@
             // 
             this.textBoxDayStartToCurrent.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.textBoxDayStartToCurrent.Enabled = false;
-            this.textBoxDayStartToCurrent.Location = new System.Drawing.Point(101, 108);
+            this.textBoxDayStartToCurrent.Location = new System.Drawing.Point(103, 203);
             this.textBoxDayStartToCurrent.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxDayStartToCurrent.Name = "textBoxDayStartToCurrent";
             this.textBoxDayStartToCurrent.Size = new System.Drawing.Size(65, 22);
@@ -350,7 +356,7 @@
             // 
             this.textBoxTodayStatus.BackColor = System.Drawing.SystemColors.InactiveBorder;
             this.textBoxTodayStatus.Enabled = false;
-            this.textBoxTodayStatus.Location = new System.Drawing.Point(101, 137);
+            this.textBoxTodayStatus.Location = new System.Drawing.Point(101, 248);
             this.textBoxTodayStatus.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxTodayStatus.Name = "textBoxTodayStatus";
             this.textBoxTodayStatus.Size = new System.Drawing.Size(65, 22);
@@ -360,7 +366,7 @@
             // 
             this.textBoxExtendDay.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.textBoxExtendDay.Enabled = false;
-            this.textBoxExtendDay.Location = new System.Drawing.Point(252, 79);
+            this.textBoxExtendDay.Location = new System.Drawing.Point(308, 110);
             this.textBoxExtendDay.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxExtendDay.Name = "textBoxExtendDay";
             this.textBoxExtendDay.Size = new System.Drawing.Size(65, 22);
@@ -370,7 +376,7 @@
             // 
             this.textBoxDayNotAccount.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.textBoxDayNotAccount.Enabled = false;
-            this.textBoxDayNotAccount.Location = new System.Drawing.Point(252, 111);
+            this.textBoxDayNotAccount.Location = new System.Drawing.Point(252, 176);
             this.textBoxDayNotAccount.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxDayNotAccount.Name = "textBoxDayNotAccount";
             this.textBoxDayNotAccount.Size = new System.Drawing.Size(65, 22);
@@ -380,7 +386,7 @@
             // 
             this.textBoxAccumulateStatus.BackColor = System.Drawing.SystemColors.InactiveBorder;
             this.textBoxAccumulateStatus.Enabled = false;
-            this.textBoxAccumulateStatus.Location = new System.Drawing.Point(252, 143);
+            this.textBoxAccumulateStatus.Location = new System.Drawing.Point(252, 254);
             this.textBoxAccumulateStatus.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxAccumulateStatus.Name = "textBoxAccumulateStatus";
             this.textBoxAccumulateStatus.Size = new System.Drawing.Size(65, 22);
@@ -390,7 +396,7 @@
             // 
             this.textBox7.BackColor = System.Drawing.SystemColors.InactiveBorder;
             this.textBox7.Enabled = false;
-            this.textBox7.Location = new System.Drawing.Point(443, 143);
+            this.textBox7.Location = new System.Drawing.Point(443, 254);
             this.textBox7.Margin = new System.Windows.Forms.Padding(4);
             this.textBox7.Name = "textBox7";
             this.textBox7.Size = new System.Drawing.Size(65, 22);
@@ -400,7 +406,7 @@
             // 
             this.textBox8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.textBox8.Enabled = false;
-            this.textBox8.Location = new System.Drawing.Point(443, 111);
+            this.textBox8.Location = new System.Drawing.Point(443, 176);
             this.textBox8.Margin = new System.Windows.Forms.Padding(4);
             this.textBox8.Name = "textBox8";
             this.textBox8.Size = new System.Drawing.Size(65, 22);
@@ -409,26 +415,28 @@
             // textBoxAccumulateExtend
             // 
             this.textBoxAccumulateExtend.Enabled = false;
-            this.textBoxAccumulateExtend.Location = new System.Drawing.Point(443, 79);
+            this.textBoxAccumulateExtend.Location = new System.Drawing.Point(472, 110);
             this.textBoxAccumulateExtend.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxAccumulateExtend.Name = "textBoxAccumulateExtend";
+            this.textBoxAccumulateExtend.ReadOnly = true;
             this.textBoxAccumulateExtend.Size = new System.Drawing.Size(65, 22);
             this.textBoxAccumulateExtend.TabIndex = 5;
             // 
-            // textBox10
+            // textBoxAccumulateDuration
             // 
-            this.textBox10.Enabled = false;
-            this.textBox10.Location = new System.Drawing.Point(620, 79);
-            this.textBox10.Margin = new System.Windows.Forms.Padding(4);
-            this.textBox10.Name = "textBox10";
-            this.textBox10.Size = new System.Drawing.Size(65, 22);
-            this.textBox10.TabIndex = 5;
+            this.textBoxAccumulateDuration.Enabled = false;
+            this.textBoxAccumulateDuration.Location = new System.Drawing.Point(620, 110);
+            this.textBoxAccumulateDuration.Margin = new System.Windows.Forms.Padding(4);
+            this.textBoxAccumulateDuration.Name = "textBoxAccumulateDuration";
+            this.textBoxAccumulateDuration.ReadOnly = true;
+            this.textBoxAccumulateDuration.Size = new System.Drawing.Size(65, 22);
+            this.textBoxAccumulateDuration.TabIndex = 5;
             // 
             // textBox11
             // 
             this.textBox11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.textBox11.Enabled = false;
-            this.textBox11.Location = new System.Drawing.Point(620, 111);
+            this.textBox11.Location = new System.Drawing.Point(620, 176);
             this.textBox11.Margin = new System.Windows.Forms.Padding(4);
             this.textBox11.Name = "textBox11";
             this.textBox11.Size = new System.Drawing.Size(65, 22);
@@ -438,7 +446,7 @@
             // 
             this.textBox12.BackColor = System.Drawing.SystemColors.InactiveBorder;
             this.textBox12.Enabled = false;
-            this.textBox12.Location = new System.Drawing.Point(620, 140);
+            this.textBox12.Location = new System.Drawing.Point(620, 251);
             this.textBox12.Margin = new System.Windows.Forms.Padding(4);
             this.textBox12.Name = "textBox12";
             this.textBox12.Size = new System.Drawing.Size(65, 22);
@@ -448,7 +456,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(12, 82);
+            this.label1.Location = new System.Drawing.Point(12, 113);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(68, 16);
@@ -459,29 +467,29 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(12, 114);
+            this.label2.Location = new System.Drawing.Point(12, 179);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(68, 16);
+            this.label2.Size = new System.Drawing.Size(98, 16);
             this.label2.TabIndex = 0;
-            this.label2.Text = "開工迄今";
+            this.label2.Text = "開工迄今工期";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(176, 82);
+            this.label3.Location = new System.Drawing.Point(176, 113);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(68, 16);
+            this.label3.Size = new System.Drawing.Size(128, 16);
             this.label3.TabIndex = 0;
-            this.label3.Text = "追加工期";
+            this.label3.Text = "今日開始追加工期";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(176, 114);
+            this.label4.Location = new System.Drawing.Point(176, 179);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(68, 16);
@@ -492,7 +500,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(176, 145);
+            this.label5.Location = new System.Drawing.Point(176, 256);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(68, 16);
@@ -503,7 +511,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(12, 145);
+            this.label6.Location = new System.Drawing.Point(12, 256);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(68, 16);
@@ -526,6 +534,7 @@
             this.textBoxWeekDay.Location = new System.Drawing.Point(288, 47);
             this.textBoxWeekDay.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxWeekDay.Name = "textBoxWeekDay";
+            this.textBoxWeekDay.ReadOnly = true;
             this.textBoxWeekDay.Size = new System.Drawing.Size(29, 22);
             this.textBoxWeekDay.TabIndex = 5;
             // 
@@ -533,29 +542,29 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(361, 79);
+            this.label7.Location = new System.Drawing.Point(375, 110);
             this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(68, 16);
+            this.label7.Size = new System.Drawing.Size(98, 16);
             this.label7.TabIndex = 0;
-            this.label7.Text = "累計追加";
+            this.label7.Text = "累計追加工期";
             // 
             // label8
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(361, 114);
+            this.label8.Location = new System.Drawing.Point(361, 179);
             this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(68, 16);
             this.label8.TabIndex = 0;
-            this.label8.Text = "累計工期";
+            this.label8.Text = "實際工期";
             // 
             // label9
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(361, 140);
+            this.label9.Location = new System.Drawing.Point(361, 251);
             this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(68, 16);
@@ -566,18 +575,18 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(539, 82);
+            this.label10.Location = new System.Drawing.Point(539, 113);
             this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(68, 16);
             this.label10.TabIndex = 0;
-            this.label10.Text = "累計工期";
+            this.label10.Text = "工期總計";
             // 
             // label11
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(539, 111);
+            this.label11.Location = new System.Drawing.Point(539, 176);
             this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(68, 16);
@@ -587,7 +596,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(539, 137);
+            this.label12.Location = new System.Drawing.Point(539, 248);
             this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(50, 16);
@@ -597,7 +606,7 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(711, 79);
+            this.label13.Location = new System.Drawing.Point(12, 83);
             this.label13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(68, 16);
@@ -607,7 +616,7 @@
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(711, 111);
+            this.label14.Location = new System.Drawing.Point(20, 142);
             this.label14.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(68, 16);
@@ -617,7 +626,7 @@
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(711, 144);
+            this.label15.Location = new System.Drawing.Point(711, 255);
             this.label15.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(50, 16);
@@ -628,7 +637,7 @@
             // 
             this.dateStart.CalendarMonthBackground = System.Drawing.Color.White;
             this.dateStart.Enabled = false;
-            this.dateStart.Location = new System.Drawing.Point(792, 76);
+            this.dateStart.Location = new System.Drawing.Point(93, 80);
             this.dateStart.Margin = new System.Windows.Forms.Padding(4);
             this.dateStart.Name = "dateStart";
             this.dateStart.Size = new System.Drawing.Size(151, 22);
@@ -638,7 +647,7 @@
             // 
             this.textBoxContractDays.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.textBoxContractDays.Enabled = false;
-            this.textBoxContractDays.Location = new System.Drawing.Point(792, 112);
+            this.textBoxContractDays.Location = new System.Drawing.Point(101, 143);
             this.textBoxContractDays.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxContractDays.Name = "textBoxContractDays";
             this.textBoxContractDays.Size = new System.Drawing.Size(65, 22);
@@ -648,7 +657,7 @@
             // 
             this.textBox2.BackColor = System.Drawing.SystemColors.InactiveBorder;
             this.textBox2.Enabled = false;
-            this.textBox2.Location = new System.Drawing.Point(792, 144);
+            this.textBox2.Location = new System.Drawing.Point(792, 255);
             this.textBox2.Margin = new System.Windows.Forms.Padding(4);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(65, 22);
@@ -657,7 +666,7 @@
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(996, 76);
+            this.label16.Location = new System.Drawing.Point(539, 209);
             this.label16.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(68, 16);
@@ -668,7 +677,7 @@
             // 
             this.textBoxRestDays.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.textBoxRestDays.Enabled = false;
-            this.textBoxRestDays.Location = new System.Drawing.Point(1077, 73);
+            this.textBoxRestDays.Location = new System.Drawing.Point(620, 206);
             this.textBoxRestDays.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxRestDays.Name = "textBoxRestDays";
             this.textBoxRestDays.Size = new System.Drawing.Size(65, 22);
@@ -725,14 +734,14 @@
             this.comboBoxWeatherAfternoon.Size = new System.Drawing.Size(56, 24);
             this.comboBoxWeatherAfternoon.TabIndex = 2;
             // 
-            // textBox4
+            // textBoxInterference
             // 
-            this.textBox4.Enabled = false;
-            this.textBox4.Location = new System.Drawing.Point(792, 44);
-            this.textBox4.Margin = new System.Windows.Forms.Padding(4);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(65, 22);
-            this.textBox4.TabIndex = 5;
+            this.textBoxInterference.Enabled = false;
+            this.textBoxInterference.Location = new System.Drawing.Point(792, 44);
+            this.textBoxInterference.Margin = new System.Windows.Forms.Padding(4);
+            this.textBoxInterference.Name = "textBoxInterference";
+            this.textBoxInterference.Size = new System.Drawing.Size(65, 22);
+            this.textBoxInterference.TabIndex = 5;
             // 
             // label21
             // 
@@ -817,6 +826,7 @@
             // 
             // textBoxProjectName
             // 
+            this.textBoxProjectName.Enabled = false;
             this.textBoxProjectName.Location = new System.Drawing.Point(245, 15);
             this.textBoxProjectName.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxProjectName.Name = "textBoxProjectName";
@@ -844,11 +854,78 @@
             this.btnDeleteData.UseVisualStyleBackColor = true;
             this.btnDeleteData.Click += new System.EventHandler(this.btnDeleteData_Click);
             // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label25.ForeColor = System.Drawing.Color.Red;
+            this.label25.Location = new System.Drawing.Point(15, 67);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(139, 13);
+            this.label25.TabIndex = 9;
+            this.label25.Text = "已存在相同日期的日報表";
+            this.label25.Visible = false;
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label26.ForeColor = System.Drawing.Color.Red;
+            this.label26.Location = new System.Drawing.Point(17, 39);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(79, 13);
+            this.label26.TabIndex = 9;
+            this.label26.Text = "請先選擇工程";
+            this.label26.Visible = false;
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Location = new System.Drawing.Point(464, 146);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(143, 16);
+            this.label27.TabIndex = 10;
+            this.label27.Text = "追加工期後總計天數";
+            // 
+            // textBoxAccumulateDays
+            // 
+            this.textBoxAccumulateDays.Enabled = false;
+            this.textBoxAccumulateDays.Location = new System.Drawing.Point(620, 146);
+            this.textBoxAccumulateDays.Name = "textBoxAccumulateDays";
+            this.textBoxAccumulateDays.ReadOnly = true;
+            this.textBoxAccumulateDays.Size = new System.Drawing.Size(100, 22);
+            this.textBoxAccumulateDays.TabIndex = 11;
+            // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label28.Location = new System.Drawing.Point(12, 208);
+            this.label28.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(98, 16);
+            this.label28.TabIndex = 0;
+            this.label28.Text = "開工迄今天數";
+            // 
+            // textBoxDurationStartToCurrent
+            // 
+            this.textBoxDurationStartToCurrent.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.textBoxDurationStartToCurrent.Enabled = false;
+            this.textBoxDurationStartToCurrent.Location = new System.Drawing.Point(103, 179);
+            this.textBoxDurationStartToCurrent.Margin = new System.Windows.Forms.Padding(4);
+            this.textBoxDurationStartToCurrent.Name = "textBoxDurationStartToCurrent";
+            this.textBoxDurationStartToCurrent.Size = new System.Drawing.Size(65, 22);
+            this.textBoxDurationStartToCurrent.TabIndex = 5;
+            // 
             // DailyReportIncreaseForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1201, 698);
+            this.Controls.Add(this.textBoxAccumulateDays);
+            this.Controls.Add(this.label27);
+            this.Controls.Add(this.label26);
+            this.Controls.Add(this.label25);
             this.Controls.Add(this.btnDeleteData);
             this.Controls.Add(this.btnAddData);
             this.Controls.Add(this.textBoxProjectName);
@@ -858,8 +935,8 @@
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.textBoxRestDays);
             this.Controls.Add(this.textBoxContractDays);
-            this.Controls.Add(this.textBox4);
-            this.Controls.Add(this.textBox10);
+            this.Controls.Add(this.textBoxInterference);
+            this.Controls.Add(this.textBoxAccumulateDuration);
             this.Controls.Add(this.textBoxAccumulateExtend);
             this.Controls.Add(this.textBox8);
             this.Controls.Add(this.textBox7);
@@ -868,6 +945,7 @@
             this.Controls.Add(this.textBoxWeekDay);
             this.Controls.Add(this.textBoxExtendDay);
             this.Controls.Add(this.textBoxTodayStatus);
+            this.Controls.Add(this.textBoxDurationStartToCurrent);
             this.Controls.Add(this.textBoxDayStartToCurrent);
             this.Controls.Add(this.textBoxProjectNo);
             this.Controls.Add(this.textBoxContractDuration);
@@ -905,10 +983,12 @@
             this.Controls.Add(this.label19);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label3);
+            this.Controls.Add(this.label28);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.labelProjectNo);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "DailyReportIncreaseForm";
             this.Text = "日報表建檔作業";
@@ -954,7 +1034,7 @@
         private System.Windows.Forms.TextBox textBox7;
         private System.Windows.Forms.TextBox textBox8;
         private System.Windows.Forms.TextBox textBoxAccumulateExtend;
-        private System.Windows.Forms.TextBox textBox10;
+        private System.Windows.Forms.TextBox textBoxAccumulateDuration;
         private System.Windows.Forms.TextBox textBox11;
         private System.Windows.Forms.TextBox textBox12;
         private System.Windows.Forms.Label label1;
@@ -984,7 +1064,7 @@
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.ComboBox comboBoxWeatherAfternoon;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox textBoxInterference;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.ComboBox comboBoxCondition;
@@ -1000,5 +1080,11 @@
         private System.Windows.Forms.DataGridView dataGridViewVacation;
         private System.Windows.Forms.Button btnAddData;
         private System.Windows.Forms.Button btnDeleteData;
+        private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.Label label27;
+        private System.Windows.Forms.TextBox textBoxAccumulateDays;
+        private System.Windows.Forms.Label label28;
+        private System.Windows.Forms.TextBox textBoxDurationStartToCurrent;
     }
 }

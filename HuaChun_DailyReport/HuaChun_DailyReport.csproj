@@ -176,6 +176,48 @@
     <Compile Include="ProjectSearchForm.Designer.cs">
       <DependentUpon>ProjectSearchForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="QueryDailyReportListForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="QueryDailyReportListForm.Designer.cs">
+      <DependentUpon>QueryDailyReportListForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="QueryFinishChartForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="QueryFinishChartForm.Designer.cs">
+      <DependentUpon>QueryFinishChartForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="QueryFormBase.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="QueryFormBase.Designer.cs">
+      <DependentUpon>QueryFormBase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="QueryNonworkingDayChartForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="QueryNonworkingDayChartForm.Designer.cs">
+      <DependentUpon>QueryNonworkingDayChartForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="QueryNonworkingDayDetailForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="QueryNonworkingDayDetailForm.Designer.cs">
+      <DependentUpon>QueryNonworkingDayDetailForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="QueryNonworkingDayStatisticForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="QueryNonworkingDayStatisticForm.Designer.cs">
+      <DependentUpon>QueryNonworkingDayStatisticForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="QueryWeatherChartForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="QueryWeatherChartForm.Designer.cs">
+      <DependentUpon>QueryWeatherChartForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="SearchFormBase.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -259,6 +301,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MaterialSearchForm.resx">
       <DependentUpon>MaterialSearchForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProjectEditForm.resx">
+      <DependentUpon>ProjectEditForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="QueryFinishChartForm.resx">
+      <DependentUpon>QueryFinishChartForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="QueryFormBase.resx">
+      <DependentUpon>QueryFormBase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="QueryNonworkingDayChartForm.resx">
+      <DependentUpon>QueryNonworkingDayChartForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="QueryWeatherChartForm.resx">
+      <DependentUpon>QueryWeatherChartForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SearchFormBase.resx">
       <DependentUpon>SearchFormBase.cs</DependentUpon>

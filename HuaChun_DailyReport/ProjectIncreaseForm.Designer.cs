@@ -479,6 +479,7 @@
             this.radioBtnNoWeekend.TabStop = true;
             this.radioBtnNoWeekend.Text = "無休";
             this.radioBtnNoWeekend.UseVisualStyleBackColor = true;
+            this.radioBtnNoWeekend.CheckedChanged += new System.EventHandler(this.workingDayConditionChanged);
             // 
             // radioBtnSun
             // 
@@ -491,6 +492,7 @@
             this.radioBtnSun.TabStop = true;
             this.radioBtnSun.Text = "週休一日";
             this.radioBtnSun.UseVisualStyleBackColor = true;
+            this.radioBtnSun.CheckedChanged += new System.EventHandler(this.workingDayConditionChanged);
             // 
             // radioBtnSatSun
             // 
@@ -503,6 +505,7 @@
             this.radioBtnSatSun.TabStop = true;
             this.radioBtnSatSun.Text = "週休二日";
             this.radioBtnSatSun.UseVisualStyleBackColor = true;
+            this.radioBtnSatSun.CheckedChanged += new System.EventHandler(this.workingDayConditionChanged);
             // 
             // label18
             // 
@@ -616,11 +619,6 @@
             // 
             this.numericDays.DecimalPlaces = 1;
             this.numericDays.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.numericDays.Increment = new decimal(new int[] {
-            5,
-            0,
-            0,
-            65536});
             this.numericDays.Location = new System.Drawing.Point(410, 247);
             this.numericDays.Maximum = new decimal(new int[] {
             10000,
@@ -641,11 +639,6 @@
             // 
             this.numericDuration.DecimalPlaces = 1;
             this.numericDuration.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.numericDuration.Increment = new decimal(new int[] {
-            5,
-            0,
-            0,
-            65536});
             this.numericDuration.Location = new System.Drawing.Point(410, 167);
             this.numericDuration.Maximum = new decimal(new int[] {
             10000,
@@ -769,6 +762,7 @@
             this.checkBoxHoliday.TabIndex = 34;
             this.checkBoxHoliday.Text = "國定假日";
             this.checkBoxHoliday.UseVisualStyleBackColor = true;
+            this.checkBoxHoliday.CheckedChanged += new System.EventHandler(this.workingDayConditionChanged);
             // 
             // groupBox1
             // 
@@ -847,7 +841,7 @@
             this.btnCalculateByDuration.TabIndex = 35;
             this.btnCalculateByDuration.Text = "根據工期自動計算";
             this.btnCalculateByDuration.UseVisualStyleBackColor = true;
-            this.btnCalculateByDuration.Click += new System.EventHandler(this.btnCalculateByDuration_Click);
+            this.btnCalculateByDuration.Visible = false;
             // 
             // groupBox3
             // 
@@ -868,7 +862,7 @@
             this.btnCalculateByTotalDays.TabIndex = 37;
             this.btnCalculateByTotalDays.Text = "根據總天數自動計算";
             this.btnCalculateByTotalDays.UseVisualStyleBackColor = true;
-            this.btnCalculateByTotalDays.Click += new System.EventHandler(this.btnCalculateByTotalDays_Click);
+            this.btnCalculateByTotalDays.Visible = false;
             // 
             // btnCalculateByFinish
             // 
@@ -878,7 +872,7 @@
             this.btnCalculateByFinish.TabIndex = 36;
             this.btnCalculateByFinish.Text = "根據完工日自動計算";
             this.btnCalculateByFinish.UseVisualStyleBackColor = true;
-            this.btnCalculateByFinish.Click += new System.EventHandler(this.btnCalculateByFinish_Click);
+            this.btnCalculateByFinish.Visible = false;
             // 
             // ProjectIncreaseForm
             // 

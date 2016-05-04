@@ -520,6 +520,7 @@
             this.Controls.Add(this.label11);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label9);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Name = "VendorIncreaseForm";
             this.Text = "廠商新增作業";
             this.groupBox1.ResumeLayout(false);
