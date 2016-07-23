@@ -7,21 +7,38 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Drawing.Printing;
+using MySql.Data.MySqlClient;
 
 namespace HuaChun_DailyReport
 {
     public partial class Main : Form
     {
+
+        BackgroundWorker bg = new BackgroundWorker();
+
+        private string dbHost;
+        private string dbUser;
+        private string dbPass;
+        private string dbName;
+        private MySQL SQL;
+        private string g_ProjectNo = "";
+
         LoginForm loginForm;
         public Main()
         {
             InitializeComponent();
             Login();
-            //loginForm = new LoginForm(this);
-            //ToolStripMenuItem1.Enabled = false;
-            //ToolStripMenuItem2.Enabled = false;
-            //ToolStripMenuItem3.Enabled = false;
-            //ToolStripMenuItem4.Enabled = false;
+
+            dbHost = AppSetting.LoadInitialSetting("DB_IP", "127.0.0.1");
+            dbUser = AppSetting.LoadInitialSetting("DB_USER", "root");
+            dbPass = AppSetting.LoadInitialSetting("DB_PASSWORD", "123");
+            dbName = AppSetting.LoadInitialSetting("DB_NAME", "huachun");
+
+            SQL = new MySQL(dbHost, dbUser, dbPass, dbName);
+
+            bg.DoWork += new DoWorkEventHandler(bg_DoWork);
+            bg.ProgressChanged += new ProgressChangedEventHandler(bg_ProgressChange);
+            bg.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bg_RunWorkerCompleted);
         }
 
         //MenuItem Click Event
@@ -29,12 +46,19 @@ namespace HuaChun_DailyReport
         //登入登出
         private void MenuItemLogin_Click(object sender, EventArgs e)
         {
+            loginForm = new LoginForm(this);
             loginForm.ShowDialog();
         }
 
         private void MenuItemLogout_Click(object sender, EventArgs e)
         {
-
+            Logout();
+        }
+        //選擇專案
+        private void MenuItemSelectProject_Click(object sender, EventArgs e)
+        {
+            ProjectSearchForm form = new ProjectSearchForm(this);
+            form.ShowDialog();
         }
 
         //基本資料維護
@@ -143,13 +167,22 @@ namespace HuaChun_DailyReport
         //日報表作業
         private void MenuItemDailyReportBuild_Click(object sender, EventArgs e)
         {
-            DailyReportIncreaseForm reportBuildForm = new DailyReportIncreaseForm();
+            DailyReportIncreaseForm reportBuildForm = new DailyReportIncreaseForm(g_ProjectNo);
             reportBuildForm.ShowDialog();
         }
 
         private void MenuItemDailyReportEdit_Click(object sender, EventArgs e)
         {
-
+            string[] reportDates = SQL.Read1DArray_SQL_Data("date", "dailyreport", "project_no ='" + g_ProjectNo + "' ORDER BY date DESC");
+            if (reportDates.Length == 0)//表示這個工程目前並沒有輸入任何日報表
+            {
+                MessageBox.Show("此工程目前並沒有任何已存在的日報表,\r\n請重新選擇工程或建立日報表", "無法編輯", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else
+            {
+                DailyReportEditForm reportEditForm = new DailyReportEditForm(g_ProjectNo);
+                reportEditForm.ShowDialog();
+            }
         }
 
         private void MenuItemDailyReportCheck_Click(object sender, EventArgs e)
@@ -171,8 +204,26 @@ namespace HuaChun_DailyReport
         //查詢晴雨表
         private void MenuItemWeatherChart_Click(object sender, EventArgs e)
         {
-            QueryWeatherChartForm queryWeatherChartForm = new QueryWeatherChartForm();
-            queryWeatherChartForm.ShowDialog();
+            string[] reportDates = SQL.Read1DArray_SQL_Data("date", "dailyreport", "project_no ='" + g_ProjectNo + "' ORDER BY date DESC");
+            if (reportDates.Length == 0)//表示這個工程目前並沒有輸入任何日報表
+            {
+                MessageBox.Show("此工程目前並沒有任何已存在的日報表,\r\n請重新選擇工程或建立日報表", "無法建立晴雨表", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else
+            {
+                SaveFileDialog saveFileDialog = new SaveFileDialog();
+                saveFileDialog.Filter = "Excel File|*.xls";
+                saveFileDialog.Title = "Save an Excel File";
+                saveFileDialog.ShowDialog();
+
+                if (saveFileDialog.FileName != "")
+                {
+                    ClassExcelGenerator excelGen = new ClassExcelGenerator(g_ProjectNo, saveFileDialog.FileName, 0);
+                    int i = 0;
+                }
+
+                //bg.RunWorkerAsync();  
+            }
         }
         //查詢日報明細表
         private void MenuItemDailyReportList_Click(object sender, EventArgs e)
@@ -201,12 +252,31 @@ namespace HuaChun_DailyReport
         //查詢完工表表
         private void MenuItemFinishChart_Click(object sender, EventArgs e)
         {
-            QueryFinishChartForm queryFinishChartForm = new QueryFinishChartForm();
-            queryFinishChartForm.ShowDialog();
+            //string[] reportDates = SQL.Read1DArray_SQL_Data("date", "dailyreport", "project_no ='" + g_ProjectNo + "' ORDER BY date DESC");
+            //if (reportDates.Length == 0)//表示這個工程目前並沒有輸入任何日報表
+            //{
+            //    MessageBox.Show("此工程目前並沒有任何已存在的日報表,\r\n請重新選擇工程或建立日報表", "無法查詢總表", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            //}
+            //else
+            {
+                QueryFinishForm queryFinishChartForm = new QueryFinishForm(g_ProjectNo);
+                queryFinishChartForm.ShowDialog();
+            }
         }
 
+        private void bg_DoWork(object sender, DoWorkEventArgs e)
+        {
+            //ClassExcelGenerator excelGen = new ClassExcelGenerator(g_ProjectNo, 0);
 
+            while (true)
+            { }
+        }
 
+        private void bg_ProgressChange(object sender, ProgressChangedEventArgs e)
+        { }
+
+        private void bg_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        { }
 
         private void Main_Load(object sender, EventArgs e)
         {
@@ -232,11 +302,21 @@ namespace HuaChun_DailyReport
 
         public void Login()
         {
-            ToolStripMenuItemLogin.Enabled = false;
-            MenuItemBasicInfo.Enabled = true;
-            MenuItemDailyReport.Enabled = true;
-            MenuItemQuery.Enabled = true;
-            MenuItemSystem.Enabled = true;
+            this.MenuItemBasicInfo.Enabled = true;
+            this.MenuItemSystem.Enabled = true;
+            this.MenuItemSelectProject.Enabled = true;
+        }
+
+        private void Logout()
+        {
+            this.MenuItemBasicInfo.Enabled = false;
+            this.MenuItemSystem.Enabled = false;
+            this.MenuItemSelectProject.Enabled = false;
+
+            this.MenuItemDailyReport.Enabled = false;
+            this.MenuItemQuery.Enabled = false;
+            this.labelProject.Text = "";
+            g_ProjectNo = "";
         }
 
 
@@ -266,11 +346,37 @@ namespace HuaChun_DailyReport
         private void button1_Click(object sender, EventArgs e)
         {
 
+            DateTime date1 = new DateTime(2016, 1, 1);
+            DateTime date2 = new DateTime(2017, 1, 1);
+            int days = date2.Subtract(date1).Days;
+            int a = 0;
+            //ClassExcelGenerator ExcelGen = new ClassExcelGenerator("");
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             ClassPDFGenerator pdfGen = new ClassPDFGenerator();
+
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            string dbHost = "192.168.1.104";
+            string dbUser = "weichien";
+            string dbPass = "chichi1219";
+            string dbName = "huachun";
+            MySQL SQL = new MySQL(dbHost, dbUser, dbPass, dbName);
+            string computeType = SQL.Read_SQL_data("computetype", "project_info", "project_no = 'w04'");
+            bool stop = true;
+        }
+
+        public void LoadProjectInfo(string projectNo)
+        {
+            this.labelProject.Text = SQL.Read_SQL_data("project_name", "project_info", "project_no = '" + projectNo + "'");
+            g_ProjectNo = projectNo;
+
+            this.MenuItemDailyReport.Enabled = true;
+            this.MenuItemQuery.Enabled = true;
 
         }
 

@@ -52,7 +52,6 @@
             this.textBoxQuality = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
-            this.textBoxAmount = new System.Windows.Forms.TextBox();
             this.dateTimeBid = new System.Windows.Forms.DateTimePicker();
             this.dateTimeStart = new System.Windows.Forms.DateTimePicker();
             this.dateTimeFinish = new System.Windows.Forms.DateTimePicker();
@@ -93,22 +92,28 @@
             this.textBoxPhone4 = new System.Windows.Forms.TextBox();
             this.btnSearchOnsite = new System.Windows.Forms.Button();
             this.btnSearchSecurity = new System.Windows.Forms.Button();
-            this.checkBoxHoliday = new System.Windows.Forms.CheckBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.radioBtnRestrictSchedule = new System.Windows.Forms.RadioButton();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label28 = new System.Windows.Forms.Label();
             this.label29 = new System.Windows.Forms.Label();
             this.label30 = new System.Windows.Forms.Label();
-            this.btnCalculateByDuration = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.btnCalculateByTotalDays = new System.Windows.Forms.Button();
-            this.btnCalculateByFinish = new System.Windows.Forms.Button();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.radioBtnHolidayNoWorking = new System.Windows.Forms.RadioButton();
+            this.radioBtnHolidayNeedWorking = new System.Windows.Forms.RadioButton();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.radioBtnNoWorkingOnSmallRainyDay = new System.Windows.Forms.RadioButton();
+            this.radioBtnNoWorkingOnHeavyRainyDay = new System.Windows.Forms.RadioButton();
+            this.numericAmount = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.numericDays)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericDuration)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            this.groupBox5.SuspendLayout();
+            this.groupBox4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericAmount)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -334,14 +339,6 @@
             this.label12.Size = new System.Drawing.Size(68, 16);
             this.label12.TabIndex = 0;
             this.label12.Text = "契約金額";
-            // 
-            // textBoxAmount
-            // 
-            this.textBoxAmount.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxAmount.Location = new System.Drawing.Point(410, 87);
-            this.textBoxAmount.Name = "textBoxAmount";
-            this.textBoxAmount.Size = new System.Drawing.Size(200, 22);
-            this.textBoxAmount.TabIndex = 23;
             // 
             // dateTimeBid
             // 
@@ -619,26 +616,42 @@
             // 
             this.numericDays.DecimalPlaces = 1;
             this.numericDays.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.numericDays.Increment = new decimal(new int[] {
+            5,
+            0,
+            0,
+            65536});
             this.numericDays.Location = new System.Drawing.Point(410, 247);
             this.numericDays.Maximum = new decimal(new int[] {
             10000,
             0,
             0,
             0});
+            this.numericDays.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.numericDays.Name = "numericDays";
             this.numericDays.Size = new System.Drawing.Size(200, 22);
             this.numericDays.TabIndex = 27;
+            this.numericDays.ThousandsSeparator = true;
             this.numericDays.Value = new decimal(new int[] {
             1,
             0,
             0,
             0});
-            this.numericDays.ValueChanged += new System.EventHandler(this.numericUpDownDays_ValueChanged);
+            this.numericDays.ValueChanged += new System.EventHandler(this.numericDays_ValueChanged);
             // 
             // numericDuration
             // 
             this.numericDuration.DecimalPlaces = 1;
             this.numericDuration.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.numericDuration.Increment = new decimal(new int[] {
+            5,
+            0,
+            0,
+            65536});
             this.numericDuration.Location = new System.Drawing.Point(410, 167);
             this.numericDuration.Maximum = new decimal(new int[] {
             10000,
@@ -653,12 +666,13 @@
             this.numericDuration.Name = "numericDuration";
             this.numericDuration.Size = new System.Drawing.Size(200, 22);
             this.numericDuration.TabIndex = 25;
+            this.numericDuration.ThousandsSeparator = true;
             this.numericDuration.Value = new decimal(new int[] {
             1,
             0,
             0,
             0});
-            this.numericDuration.ValueChanged += new System.EventHandler(this.numericUpDownDuration_ValueChanged);
+            this.numericDuration.ValueChanged += new System.EventHandler(this.numericDuration_ValueChanged);
             // 
             // label24
             // 
@@ -752,24 +766,12 @@
             this.btnSearchSecurity.UseVisualStyleBackColor = true;
             this.btnSearchSecurity.Click += new System.EventHandler(this.btnSearchSecurity_Click);
             // 
-            // checkBoxHoliday
-            // 
-            this.checkBoxHoliday.AutoSize = true;
-            this.checkBoxHoliday.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBoxHoliday.Location = new System.Drawing.Point(10, 80);
-            this.checkBoxHoliday.Name = "checkBoxHoliday";
-            this.checkBoxHoliday.Size = new System.Drawing.Size(87, 20);
-            this.checkBoxHoliday.TabIndex = 34;
-            this.checkBoxHoliday.Text = "國定假日";
-            this.checkBoxHoliday.UseVisualStyleBackColor = true;
-            this.checkBoxHoliday.CheckedChanged += new System.EventHandler(this.workingDayConditionChanged);
-            // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.radioBtnRestrictSchedule);
             this.groupBox1.Controls.Add(this.radioBtnCalenderDay);
             this.groupBox1.Controls.Add(this.radioBtnWorkingDay);
-            this.groupBox1.Location = new System.Drawing.Point(10, 10);
+            this.groupBox1.Location = new System.Drawing.Point(6, 10);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(248, 35);
             this.groupBox1.TabIndex = 0;
@@ -794,7 +796,7 @@
             this.groupBox2.Controls.Add(this.radioBtnSatSun);
             this.groupBox2.Controls.Add(this.radioBtnNoWeekend);
             this.groupBox2.Controls.Add(this.radioBtnSun);
-            this.groupBox2.Location = new System.Drawing.Point(10, 40);
+            this.groupBox2.Location = new System.Drawing.Point(6, 48);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(248, 35);
             this.groupBox2.TabIndex = 0;
@@ -833,56 +835,117 @@
             this.label30.Text = "案號及契約號不可為空白";
             this.label30.Visible = false;
             // 
-            // btnCalculateByDuration
-            // 
-            this.btnCalculateByDuration.Location = new System.Drawing.Point(625, 236);
-            this.btnCalculateByDuration.Name = "btnCalculateByDuration";
-            this.btnCalculateByDuration.Size = new System.Drawing.Size(150, 23);
-            this.btnCalculateByDuration.TabIndex = 35;
-            this.btnCalculateByDuration.Text = "根據工期自動計算";
-            this.btnCalculateByDuration.UseVisualStyleBackColor = true;
-            this.btnCalculateByDuration.Visible = false;
-            // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.groupBox5);
+            this.groupBox3.Controls.Add(this.groupBox4);
             this.groupBox3.Controls.Add(this.groupBox1);
-            this.groupBox3.Controls.Add(this.checkBoxHoliday);
             this.groupBox3.Controls.Add(this.groupBox2);
             this.groupBox3.Location = new System.Drawing.Point(625, 120);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(262, 110);
+            this.groupBox3.Size = new System.Drawing.Size(262, 200);
             this.groupBox3.TabIndex = 0;
             this.groupBox3.TabStop = false;
             // 
-            // btnCalculateByTotalDays
+            // groupBox5
             // 
-            this.btnCalculateByTotalDays.Location = new System.Drawing.Point(625, 294);
-            this.btnCalculateByTotalDays.Name = "btnCalculateByTotalDays";
-            this.btnCalculateByTotalDays.Size = new System.Drawing.Size(150, 23);
-            this.btnCalculateByTotalDays.TabIndex = 37;
-            this.btnCalculateByTotalDays.Text = "根據總天數自動計算";
-            this.btnCalculateByTotalDays.UseVisualStyleBackColor = true;
-            this.btnCalculateByTotalDays.Visible = false;
+            this.groupBox5.Controls.Add(this.radioBtnHolidayNoWorking);
+            this.groupBox5.Controls.Add(this.radioBtnHolidayNeedWorking);
+            this.groupBox5.Location = new System.Drawing.Point(6, 86);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(248, 63);
+            this.groupBox5.TabIndex = 54;
+            this.groupBox5.TabStop = false;
             // 
-            // btnCalculateByFinish
+            // radioBtnHolidayNoWorking
             // 
-            this.btnCalculateByFinish.Location = new System.Drawing.Point(625, 265);
-            this.btnCalculateByFinish.Name = "btnCalculateByFinish";
-            this.btnCalculateByFinish.Size = new System.Drawing.Size(150, 23);
-            this.btnCalculateByFinish.TabIndex = 36;
-            this.btnCalculateByFinish.Text = "根據完工日自動計算";
-            this.btnCalculateByFinish.UseVisualStyleBackColor = true;
-            this.btnCalculateByFinish.Visible = false;
+            this.radioBtnHolidayNoWorking.AutoSize = true;
+            this.radioBtnHolidayNoWorking.Enabled = false;
+            this.radioBtnHolidayNoWorking.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radioBtnHolidayNoWorking.Location = new System.Drawing.Point(10, 37);
+            this.radioBtnHolidayNoWorking.Name = "radioBtnHolidayNoWorking";
+            this.radioBtnHolidayNoWorking.Size = new System.Drawing.Size(131, 20);
+            this.radioBtnHolidayNoWorking.TabIndex = 53;
+            this.radioBtnHolidayNoWorking.Text = "國定假日不施工";
+            this.radioBtnHolidayNoWorking.UseVisualStyleBackColor = true;
+            this.radioBtnHolidayNoWorking.CheckedChanged += new System.EventHandler(this.workingDayConditionChanged);
+            // 
+            // radioBtnHolidayNeedWorking
+            // 
+            this.radioBtnHolidayNeedWorking.AutoSize = true;
+            this.radioBtnHolidayNeedWorking.Checked = true;
+            this.radioBtnHolidayNeedWorking.Enabled = false;
+            this.radioBtnHolidayNeedWorking.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radioBtnHolidayNeedWorking.Location = new System.Drawing.Point(10, 11);
+            this.radioBtnHolidayNeedWorking.Name = "radioBtnHolidayNeedWorking";
+            this.radioBtnHolidayNeedWorking.Size = new System.Drawing.Size(146, 20);
+            this.radioBtnHolidayNeedWorking.TabIndex = 53;
+            this.radioBtnHolidayNeedWorking.TabStop = true;
+            this.radioBtnHolidayNeedWorking.Text = "國定假日照常施工";
+            this.radioBtnHolidayNeedWorking.UseVisualStyleBackColor = true;
+            this.radioBtnHolidayNeedWorking.CheckedChanged += new System.EventHandler(this.workingDayConditionChanged);
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.radioBtnNoWorkingOnSmallRainyDay);
+            this.groupBox4.Controls.Add(this.radioBtnNoWorkingOnHeavyRainyDay);
+            this.groupBox4.Location = new System.Drawing.Point(8, 155);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(248, 36);
+            this.groupBox4.TabIndex = 54;
+            this.groupBox4.TabStop = false;
+            // 
+            // radioBtnNoWorkingOnSmallRainyDay
+            // 
+            this.radioBtnNoWorkingOnSmallRainyDay.AutoSize = true;
+            this.radioBtnNoWorkingOnSmallRainyDay.Checked = true;
+            this.radioBtnNoWorkingOnSmallRainyDay.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radioBtnNoWorkingOnSmallRainyDay.Location = new System.Drawing.Point(10, 10);
+            this.radioBtnNoWorkingOnSmallRainyDay.Name = "radioBtnNoWorkingOnSmallRainyDay";
+            this.radioBtnNoWorkingOnSmallRainyDay.Size = new System.Drawing.Size(116, 20);
+            this.radioBtnNoWorkingOnSmallRainyDay.TabIndex = 53;
+            this.radioBtnNoWorkingOnSmallRainyDay.TabStop = true;
+            this.radioBtnNoWorkingOnSmallRainyDay.Text = "雨天不計工期";
+            this.radioBtnNoWorkingOnSmallRainyDay.UseVisualStyleBackColor = true;
+            // 
+            // radioBtnNoWorkingOnHeavyRainyDay
+            // 
+            this.radioBtnNoWorkingOnHeavyRainyDay.AutoSize = true;
+            this.radioBtnNoWorkingOnHeavyRainyDay.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radioBtnNoWorkingOnHeavyRainyDay.Location = new System.Drawing.Point(130, 10);
+            this.radioBtnNoWorkingOnHeavyRainyDay.Name = "radioBtnNoWorkingOnHeavyRainyDay";
+            this.radioBtnNoWorkingOnHeavyRainyDay.Size = new System.Drawing.Size(116, 20);
+            this.radioBtnNoWorkingOnHeavyRainyDay.TabIndex = 53;
+            this.radioBtnNoWorkingOnHeavyRainyDay.Text = "豪雨不計工期";
+            this.radioBtnNoWorkingOnHeavyRainyDay.UseVisualStyleBackColor = true;
+            // 
+            // numericAmount
+            // 
+            this.numericAmount.DecimalPlaces = 4;
+            this.numericAmount.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.numericAmount.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            262144});
+            this.numericAmount.Location = new System.Drawing.Point(410, 87);
+            this.numericAmount.Maximum = new decimal(new int[] {
+            1410065408,
+            2,
+            0,
+            0});
+            this.numericAmount.Name = "numericAmount";
+            this.numericAmount.Size = new System.Drawing.Size(200, 22);
+            this.numericAmount.TabIndex = 52;
+            this.numericAmount.ThousandsSeparator = true;
             // 
             // ProjectIncreaseForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(890, 518);
+            this.Controls.Add(this.numericAmount);
             this.Controls.Add(this.groupBox3);
-            this.Controls.Add(this.btnCalculateByFinish);
-            this.Controls.Add(this.btnCalculateByTotalDays);
-            this.Controls.Add(this.btnCalculateByDuration);
             this.Controls.Add(this.label30);
             this.Controls.Add(this.label29);
             this.Controls.Add(this.label28);
@@ -908,7 +971,6 @@
             this.Controls.Add(this.textBoxPhone2);
             this.Controls.Add(this.textBoxPhone1);
             this.Controls.Add(this.textBoxHandle1);
-            this.Controls.Add(this.textBoxAmount);
             this.Controls.Add(this.textBoxQuality);
             this.Controls.Add(this.textBoxResponsible);
             this.Controls.Add(this.textBoxSupervisor);
@@ -956,7 +1018,11 @@
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
+            this.groupBox5.ResumeLayout(false);
+            this.groupBox5.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericAmount)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -988,7 +1054,6 @@
         protected System.Windows.Forms.TextBox textBoxQuality;
         protected System.Windows.Forms.Label label11;
         protected System.Windows.Forms.Label label12;
-        protected System.Windows.Forms.TextBox textBoxAmount;
         protected System.Windows.Forms.DateTimePicker dateTimeBid;
         protected System.Windows.Forms.DateTimePicker dateTimeStart;
         protected System.Windows.Forms.DateTimePicker dateTimeFinish;
@@ -1029,16 +1094,19 @@
         protected System.Windows.Forms.TextBox textBoxPhone4;
         protected System.Windows.Forms.Button btnSearchOnsite;
         protected System.Windows.Forms.Button btnSearchSecurity;
-        protected System.Windows.Forms.CheckBox checkBoxHoliday;
         protected System.Windows.Forms.GroupBox groupBox1;
         protected System.Windows.Forms.GroupBox groupBox2;
         protected System.Windows.Forms.Label label28;
         protected System.Windows.Forms.Label label29;
         protected System.Windows.Forms.Label label30;
-        protected System.Windows.Forms.Button btnCalculateByDuration;
         protected System.Windows.Forms.GroupBox groupBox3;
-        protected System.Windows.Forms.Button btnCalculateByTotalDays;
-        protected System.Windows.Forms.Button btnCalculateByFinish;
         protected System.Windows.Forms.RadioButton radioBtnRestrictSchedule;
+        protected System.Windows.Forms.NumericUpDown numericAmount;
+        private System.Windows.Forms.GroupBox groupBox5;
+        protected System.Windows.Forms.RadioButton radioBtnHolidayNoWorking;
+        protected System.Windows.Forms.RadioButton radioBtnHolidayNeedWorking;
+        private System.Windows.Forms.GroupBox groupBox4;
+        protected System.Windows.Forms.RadioButton radioBtnNoWorkingOnSmallRainyDay;
+        protected System.Windows.Forms.RadioButton radioBtnNoWorkingOnHeavyRainyDay;
     }
 }

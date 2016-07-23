@@ -59,12 +59,12 @@ namespace HuaChun_DailyReport
             commandStr = commandStr + "writedate";//填寫日期
             commandStr = commandStr + ") values('";
             commandStr = commandStr + ProjectNumber + "','";
-            commandStr = commandStr + Functions.GetDateTimeValue(dateTimeGrantDate.Value) + "','";//核准日期
+            commandStr = commandStr + Functions.TransferDateTimeToSQL(dateTimeGrantDate.Value) + "','";//核准日期
             commandStr = commandStr + textBoxGrantNumber.Text + "','";//核准文號
-            commandStr = commandStr + textBoxExtendValue.Text + "','";//追加金額
-            commandStr = commandStr + Functions.GetDateTimeValue(dateTimeExtendStartDate.Value) + "','";//追加起算日
+            commandStr = commandStr + numericExtendValue.Value + "','";//追加金額
+            commandStr = commandStr + Functions.TransferDateTimeToSQL(dateTimeExtendStartDate.Value) + "','";//追加起算日
             commandStr = commandStr + numericExtendDuration.Value + "','";//追加工期
-            commandStr = commandStr + Functions.GetDateTimeValue(dateTimeFilledDate.Value);//填寫日期
+            commandStr = commandStr + Functions.TransferDateTimeToSQL(dateTimeFilledDate.Value);//填寫日期
             commandStr = commandStr + "')";
 
 
@@ -76,18 +76,11 @@ namespace HuaChun_DailyReport
         protected virtual void btnOK_Click(object sender, EventArgs e)
         {
             label12.Visible = false;
-            label13.Visible = false;
 
             if (textBoxGrantNumber.Text == string.Empty)
                 label12.Visible = true;
 
-            if (textBoxExtendValue.Text == string.Empty)
-                label13.Visible = true;
-
-
             if (textBoxGrantNumber.Text == string.Empty)
-                return;
-            if (textBoxExtendValue.Text == string.Empty)
                 return;
 
             string[] sameNo = SQL.Read1DArray_SQL_Data("grantnumber", "extendduration", "project_no = '" + ProjectNumber + "' AND grantnumber = '" + textBoxGrantNumber.Text + "'");

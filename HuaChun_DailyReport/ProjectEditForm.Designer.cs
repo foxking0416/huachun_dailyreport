@@ -35,10 +35,6 @@
             this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
-            // textBoxAmount
-            // 
-            this.textBoxAmount.TextChanged += new System.EventHandler(this.TimeAndValueChanged);
-            // 
             // dateTimeStart
             // 
             this.dateTimeStart.ValueChanged += new System.EventHandler(this.TimeAndValueChanged);
@@ -72,5 +68,6 @@
         }
 
         #endregion
+
     }
 }

@@ -91,7 +91,7 @@ namespace HuaChun_DailyReport
             commandStr = commandStr + "" + "','";//dayoff
             commandStr = commandStr + textBoxID.Text + "','";//id
             commandStr = (radioBtnSexM.Checked) ? (commandStr + "1" + "','") : (commandStr + "2" + "','");//sex
-            commandStr = commandStr + Functions.GetDateTimeValue(dateTimeBirthdate.Value) + "','";//birthdate
+            commandStr = commandStr + Functions.TransferDateTimeToSQL(dateTimeBirthdate.Value) + "','";//birthdate
             commandStr = commandStr + textBoxEducation.Text + "','";//degree
             commandStr = commandStr + comboBoxCity.Text + "','";//resident_city
             commandStr = commandStr + comboBoxDistrict.Text + "','";//resident_district
@@ -101,9 +101,9 @@ namespace HuaChun_DailyReport
             commandStr = commandStr + textBoxAddress2.Text + "','";//living_address
             commandStr = commandStr + textBoxPhone.Text + "','";//phone
             commandStr = commandStr + textBoxCell.Text + "','";//cell
-            commandStr = commandStr + Functions.GetDateTimeValue(dateTimeStart.Value) + "','";//startdate
-            commandStr = commandStr + Functions.GetDateTimeValue(dateTimeInsurance.Value) + "','";//insurancedate
-            commandStr = commandStr + Functions.GetDateTimeValue(dateTimeLeave.Value) + "','";//enddate
+            commandStr = commandStr + Functions.TransferDateTimeToSQL(dateTimeStart.Value) + "','";//startdate
+            commandStr = commandStr + Functions.TransferDateTimeToSQL(dateTimeInsurance.Value) + "','";//insurancedate
+            commandStr = commandStr + Functions.TransferDateTimeToSQL(dateTimeLeave.Value) + "','";//enddate
             commandStr = commandStr + textBoxPosition.Text + "','";//position
             commandStr = commandStr + textBoxServiceYear.Text + "','";//serviceyear
             commandStr = commandStr + numericRelative.Text + "','";//relative

@@ -9,16 +9,11 @@ using System.Windows.Forms;
 
 namespace HuaChun_DailyReport
 {
-    public partial class QueryWeatherChartForm : QueryFormBase
+    public partial class ProgressForm : Form
     {
-        public QueryWeatherChartForm(string projectNo)
+        public ProgressForm()
         {
             InitializeComponent();
-        }
-
-        public override void LoadProjectInfo(string number)
-        {
-            
         }
     }
 }

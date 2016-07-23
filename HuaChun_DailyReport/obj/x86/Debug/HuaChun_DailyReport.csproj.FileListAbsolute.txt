@@ -22,5 +22,7 @@ D:\Code\C#\HuaChun_DailyReport\HuaChun_DailyReport\obj\x86\Debug\HuaChun_DailyRe
 D:\Code\C#\HuaChun_DailyReport\HuaChun_DailyReport\obj\x86\Debug\HuaChun_DailyReport.QueryFormBase.resources
 D:\Code\C#\HuaChun_DailyReport\HuaChun_DailyReport\obj\x86\Debug\HuaChun_DailyReport.QueryNonworkingDayChartForm.resources
 D:\Code\C#\HuaChun_DailyReport\HuaChun_DailyReport\obj\x86\Debug\HuaChun_DailyReport.QueryWeatherChartForm.resources
-D:\Code\C#\HuaChun_DailyReport\HuaChun_DailyReport\obj\x86\Debug\HuaChun_DailyReport.QueryFinishChartForm.resources
 D:\Code\C#\HuaChun_DailyReport\HuaChun_DailyReport\obj\x86\Debug\HuaChun_DailyReport.ProjectEditForm.resources
+D:\Code\C#\HuaChun_DailyReport\HuaChun_DailyReport\obj\x86\Debug\HuaChun_DailyReport.csproj.ResolveComReference.cache
+D:\Code\C#\HuaChun_DailyReport\HuaChun_DailyReport\obj\x86\Debug\HuaChun_DailyReport.QueryFinishForm.resources
+D:\Code\C#\HuaChun_DailyReport\HuaChun_DailyReport\obj\x86\Debug\HuaChun_DailyReport.ProgressForm.resources

@@ -135,6 +135,11 @@ namespace HuaChun_DailyReport
             }
         }
 
+        protected virtual void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
 
     }
 }

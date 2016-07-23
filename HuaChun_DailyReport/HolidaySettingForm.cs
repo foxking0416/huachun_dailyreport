@@ -45,6 +45,7 @@ namespace HuaChun_DailyReport
         {
             dataTable = new DataTable("MyNewTable");
             dataTable.Columns.Add("日期", typeof(String));
+            dataTable.Columns.Add("星期", typeof(String));
             dataTable.Columns.Add("理由", typeof(String));
             dataTable.Columns.Add("放假/補班", typeof(String));
             dataGridView1.DataSource = dataTable;
@@ -72,6 +73,7 @@ namespace HuaChun_DailyReport
             {
                 dataRow = dataTable.NewRow();
                 dataRow["日期"] = dates[i].Year.ToString() + "/" + dates[i].Month.ToString() + "/" + dates[i].Day.ToString() ;
+                dataRow["星期"] = Functions.ComputeDayOfWeek(dates[i]);
                 dataRow["理由"] = SQL.Read_SQL_data("reason", "holiday", "date = '" + dates[i].Year.ToString() + "-" + dates[i].Month.ToString() + "-" + dates[i].Day.ToString() + "'");
                 string working = SQL.Read_SQL_data("working", "holiday", "date = '" + dates[i].Year.ToString() + "-" + dates[i].Month.ToString() + "-" + dates[i].Day.ToString() + "'");
                 if(working == "1")

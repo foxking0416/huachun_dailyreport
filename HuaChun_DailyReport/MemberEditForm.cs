@@ -136,7 +136,7 @@ namespace HuaChun_DailyReport
             {
                 SQL.Set_SQL_data("id", "member", "account = '" + this.textBoxAccount.Text + "'", this.textBoxID.Text);//
                 SQL.Set_SQL_data("sex", "member", "account = '" + this.textBoxAccount.Text + "'", (radioBtnSexM.Checked) ? ("1") : ("2"));
-                SQL.Set_SQL_data("birthdate", "member", "account = '" + this.textBoxAccount.Text + "'", Functions.GetDateTimeValue(dateTimeBirthdate.Value));
+                SQL.Set_SQL_data("birthdate", "member", "account = '" + this.textBoxAccount.Text + "'", Functions.TransferDateTimeToSQL(dateTimeBirthdate.Value));
                 SQL.Set_SQL_data("degree", "member", "account = '" + this.textBoxAccount.Text + "'", this.textBoxEducation.Text);//degree
                 SQL.Set_SQL_data("resident_city", "member", "account = '" + this.textBoxAccount.Text + "'", this.comboBoxCity.Text);//resident_city
                 SQL.Set_SQL_data("resident_district", "member", "account = '" + this.textBoxAccount.Text + "'", this.comboBoxDistrict.Text);//resident_district
@@ -146,9 +146,9 @@ namespace HuaChun_DailyReport
                 SQL.Set_SQL_data("living_address", "member", "account = '" + this.textBoxAccount.Text + "'", this.textBoxAddress2.Text);//living_address
                 SQL.Set_SQL_data("phone", "member", "account = '" + this.textBoxAccount.Text + "'", this.textBoxPhone.Text);//phone
                 SQL.Set_SQL_data("cell", "member", "account = '" + this.textBoxAccount.Text + "'", this.textBoxCell.Text);//cell
-                SQL.Set_SQL_data("startdate", "member", "account = '" + this.textBoxAccount.Text + "'", Functions.GetDateTimeValue(dateTimeStart.Value));//startdate
-                SQL.Set_SQL_data("insurancedate", "member", "account = '" + this.textBoxAccount.Text + "'", Functions.GetDateTimeValue(dateTimeInsurance.Value));//insurancedate
-                SQL.Set_SQL_data("enddate", "member", "account = '" + this.textBoxAccount.Text + "'", Functions.GetDateTimeValue(dateTimeLeave.Value));//enddate
+                SQL.Set_SQL_data("startdate", "member", "account = '" + this.textBoxAccount.Text + "'", Functions.TransferDateTimeToSQL(dateTimeStart.Value));//startdate
+                SQL.Set_SQL_data("insurancedate", "member", "account = '" + this.textBoxAccount.Text + "'", Functions.TransferDateTimeToSQL(dateTimeInsurance.Value));//insurancedate
+                SQL.Set_SQL_data("enddate", "member", "account = '" + this.textBoxAccount.Text + "'", Functions.TransferDateTimeToSQL(dateTimeLeave.Value));//enddate
                 SQL.Set_SQL_data("position", "member", "account = '" + this.textBoxAccount.Text + "'", this.textBoxPosition.Text);//position
                 SQL.Set_SQL_data("serviceyear", "member", "account = '" + this.textBoxAccount.Text + "'", this.textBoxServiceYear.Text);//serviceyear
                 SQL.Set_SQL_data("relative", "member", "account = '" + this.textBoxAccount.Text + "'", this.numericRelative.Text);//relative

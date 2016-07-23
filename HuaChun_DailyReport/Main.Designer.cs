@@ -32,6 +32,7 @@
             this.ToolStripMenuItemLogin = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuItemLogin = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuItemLogout = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuItemSelectProject = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuItemBasicInfo = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuItemProjectIncrease = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuItemProjectEdit = new System.Windows.Forms.ToolStripMenuItem();
@@ -67,8 +68,8 @@
             this.MenuItemEmployeeList = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this.MenuItemWeatherChart = new System.Windows.Forms.ToolStripMenuItem();
-            this.MenuItemNonworkingDayChart = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuItemDailyReportList = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuItemNonworkingDayChart = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuItemNonworkingDayDetail = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuItemNonworkingDayStatistic = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuItemFinishChart = new System.Windows.Forms.ToolStripMenuItem();
@@ -87,6 +88,9 @@
             this.button1 = new System.Windows.Forms.Button();
             this.printDocument1 = new System.Drawing.Printing.PrintDocument();
             this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.labelProject = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -108,7 +112,8 @@
             // 
             this.ToolStripMenuItemLogin.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.MenuItemLogin,
-            this.MenuItemLogout});
+            this.MenuItemLogout,
+            this.MenuItemSelectProject});
             this.ToolStripMenuItemLogin.Name = "ToolStripMenuItemLogin";
             this.ToolStripMenuItemLogin.Size = new System.Drawing.Size(72, 20);
             this.ToolStripMenuItemLogin.Text = "登入/登出";
@@ -116,16 +121,24 @@
             // MenuItemLogin
             // 
             this.MenuItemLogin.Name = "MenuItemLogin";
-            this.MenuItemLogin.Size = new System.Drawing.Size(98, 22);
+            this.MenuItemLogin.Size = new System.Drawing.Size(122, 22);
             this.MenuItemLogin.Text = "登入";
             this.MenuItemLogin.Click += new System.EventHandler(this.MenuItemLogin_Click);
             // 
             // MenuItemLogout
             // 
             this.MenuItemLogout.Name = "MenuItemLogout";
-            this.MenuItemLogout.Size = new System.Drawing.Size(98, 22);
+            this.MenuItemLogout.Size = new System.Drawing.Size(122, 22);
             this.MenuItemLogout.Text = "登出";
             this.MenuItemLogout.Click += new System.EventHandler(this.MenuItemLogout_Click);
+            // 
+            // MenuItemSelectProject
+            // 
+            this.MenuItemSelectProject.Enabled = false;
+            this.MenuItemSelectProject.Name = "MenuItemSelectProject";
+            this.MenuItemSelectProject.Size = new System.Drawing.Size(152, 22);
+            this.MenuItemSelectProject.Text = "選擇專案";
+            this.MenuItemSelectProject.Click += new System.EventHandler(this.MenuItemSelectProject_Click);
             // 
             // MenuItemBasicInfo
             // 
@@ -143,6 +156,7 @@
             this.MenuItemHolidayManage,
             this.toolStripSeparator2,
             this.MenuItemEnd});
+            this.MenuItemBasicInfo.Enabled = false;
             this.MenuItemBasicInfo.Name = "MenuItemBasicInfo";
             this.MenuItemBasicInfo.Size = new System.Drawing.Size(91, 20);
             this.MenuItemBasicInfo.Text = "基本資料維護";
@@ -334,6 +348,7 @@
             this.MenuItemDailyReportBuild,
             this.MenuItemDailyReportEdit,
             this.MenuItemDailyReportCheck});
+            this.MenuItemDailyReport.Enabled = false;
             this.MenuItemDailyReport.Name = "MenuItemDailyReport";
             this.MenuItemDailyReport.Size = new System.Drawing.Size(79, 20);
             this.MenuItemDailyReport.Text = "日報表作業";
@@ -354,6 +369,7 @@
             // 
             // MenuItemDailyReportCheck
             // 
+            this.MenuItemDailyReportCheck.Enabled = false;
             this.MenuItemDailyReportCheck.Name = "MenuItemDailyReportCheck";
             this.MenuItemDailyReportCheck.Size = new System.Drawing.Size(182, 22);
             this.MenuItemDailyReportCheck.Text = "日報表檢查作業";
@@ -378,12 +394,14 @@
             this.外包明細表ToolStripMenuItem,
             this.toolStripSeparator4,
             this.休假明細表ToolStripMenuItem});
+            this.MenuItemQuery.Enabled = false;
             this.MenuItemQuery.Name = "MenuItemQuery";
             this.MenuItemQuery.Size = new System.Drawing.Size(43, 20);
             this.MenuItemQuery.Text = "查詢";
             // 
             // MenuItemVendorList
             // 
+            this.MenuItemVendorList.Enabled = false;
             this.MenuItemVendorList.Name = "MenuItemVendorList";
             this.MenuItemVendorList.Size = new System.Drawing.Size(158, 22);
             this.MenuItemVendorList.Text = "廠商明細表";
@@ -391,6 +409,7 @@
             // 
             // MenuItemEmployeeList
             // 
+            this.MenuItemEmployeeList.Enabled = false;
             this.MenuItemEmployeeList.Name = "MenuItemEmployeeList";
             this.MenuItemEmployeeList.Size = new System.Drawing.Size(158, 22);
             this.MenuItemEmployeeList.Text = "人事明細表";
@@ -408,22 +427,25 @@
             this.MenuItemWeatherChart.Text = "晴雨表";
             this.MenuItemWeatherChart.Click += new System.EventHandler(this.MenuItemWeatherChart_Click);
             // 
-            // MenuItemNonworkingDayChart
-            // 
-            this.MenuItemNonworkingDayChart.Name = "MenuItemNonworkingDayChart";
-            this.MenuItemNonworkingDayChart.Size = new System.Drawing.Size(158, 22);
-            this.MenuItemNonworkingDayChart.Text = "不計工期圖表";
-            this.MenuItemNonworkingDayChart.Click += new System.EventHandler(this.MenuItemNonworkingDayChart_Click);
-            // 
             // MenuItemDailyReportList
             // 
+            this.MenuItemDailyReportList.Enabled = false;
             this.MenuItemDailyReportList.Name = "MenuItemDailyReportList";
             this.MenuItemDailyReportList.Size = new System.Drawing.Size(158, 22);
             this.MenuItemDailyReportList.Text = "日報明細表";
             this.MenuItemDailyReportList.Click += new System.EventHandler(this.MenuItemDailyReportList_Click);
             // 
+            // MenuItemNonworkingDayChart
+            // 
+            this.MenuItemNonworkingDayChart.Enabled = false;
+            this.MenuItemNonworkingDayChart.Name = "MenuItemNonworkingDayChart";
+            this.MenuItemNonworkingDayChart.Size = new System.Drawing.Size(158, 22);
+            this.MenuItemNonworkingDayChart.Text = "不計工期圖表";
+            this.MenuItemNonworkingDayChart.Click += new System.EventHandler(this.MenuItemNonworkingDayChart_Click);
+            // 
             // MenuItemNonworkingDayDetail
             // 
+            this.MenuItemNonworkingDayDetail.Enabled = false;
             this.MenuItemNonworkingDayDetail.Name = "MenuItemNonworkingDayDetail";
             this.MenuItemNonworkingDayDetail.Size = new System.Drawing.Size(158, 22);
             this.MenuItemNonworkingDayDetail.Text = "不計工期明細表";
@@ -431,6 +453,7 @@
             // 
             // MenuItemNonworkingDayStatistic
             // 
+            this.MenuItemNonworkingDayStatistic.Enabled = false;
             this.MenuItemNonworkingDayStatistic.Name = "MenuItemNonworkingDayStatistic";
             this.MenuItemNonworkingDayStatistic.Size = new System.Drawing.Size(158, 22);
             this.MenuItemNonworkingDayStatistic.Text = "不計工期統計表";
@@ -450,24 +473,28 @@
             // 
             // MenuItemMaterialList
             // 
+            this.MenuItemMaterialList.Enabled = false;
             this.MenuItemMaterialList.Name = "MenuItemMaterialList";
             this.MenuItemMaterialList.Size = new System.Drawing.Size(158, 22);
             this.MenuItemMaterialList.Text = "工程材料表";
             // 
             // MenuItemVendorWorkingList
             // 
+            this.MenuItemVendorWorkingList.Enabled = false;
             this.MenuItemVendorWorkingList.Name = "MenuItemVendorWorkingList";
             this.MenuItemVendorWorkingList.Size = new System.Drawing.Size(158, 22);
             this.MenuItemVendorWorkingList.Text = "廠商出工紀錄表";
             // 
             // 機具使用表ToolStripMenuItem
             // 
+            this.機具使用表ToolStripMenuItem.Enabled = false;
             this.機具使用表ToolStripMenuItem.Name = "機具使用表ToolStripMenuItem";
             this.機具使用表ToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
             this.機具使用表ToolStripMenuItem.Text = "機具使用表";
             // 
             // 外包明細表ToolStripMenuItem
             // 
+            this.外包明細表ToolStripMenuItem.Enabled = false;
             this.外包明細表ToolStripMenuItem.Name = "外包明細表ToolStripMenuItem";
             this.外包明細表ToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
             this.外包明細表ToolStripMenuItem.Text = "外包明細表";
@@ -479,6 +506,7 @@
             // 
             // 休假明細表ToolStripMenuItem
             // 
+            this.休假明細表ToolStripMenuItem.Enabled = false;
             this.休假明細表ToolStripMenuItem.Name = "休假明細表ToolStripMenuItem";
             this.休假明細表ToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
             this.休假明細表ToolStripMenuItem.Text = "休假明細表";
@@ -526,6 +554,7 @@
             this.button1.TabIndex = 2;
             this.button1.Text = "button1";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Visible = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button2
@@ -536,13 +565,46 @@
             this.button2.TabIndex = 4;
             this.button2.Text = "Print";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Visible = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(251, 80);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.TabIndex = 5;
+            this.button3.Text = "button3";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Visible = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(21, 55);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(91, 13);
+            this.label1.TabIndex = 6;
+            this.label1.Text = "目前選擇專案：";
+            // 
+            // labelProject
+            // 
+            this.labelProject.AutoSize = true;
+            this.labelProject.Location = new System.Drawing.Point(109, 55);
+            this.labelProject.Name = "labelProject";
+            this.labelProject.Size = new System.Drawing.Size(19, 13);
+            this.labelProject.TabIndex = 6;
+            this.labelProject.Text = "無";
             // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(366, 132);
+            this.Controls.Add(this.labelProject);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.menuStrip1);
@@ -619,6 +681,10 @@
         private System.Windows.Forms.ToolStripMenuItem MenuItemEmployeeEdit;
         private System.Windows.Forms.ToolStripMenuItem MenuItemProcessCodeIncrease;
         private System.Windows.Forms.ToolStripMenuItem MenuItemProcessCodeEdit;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.ToolStripMenuItem MenuItemSelectProject;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label labelProject;
     }
 }
 

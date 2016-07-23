@@ -34,15 +34,11 @@ namespace HuaChun_DailyReport
 
             SQL = new MySQL(dbHost, dbUser, dbPass, dbName);
 
-            numericDuration.ReadOnly = true;
-            numericDays.ReadOnly = true;
+            numericDuration.ReadOnly = true;//初始化工期設定
+            numericDays.ReadOnly = true;//初始化天數設定
             dateTimeFinish.Enabled = true;
             groupBox2.Enabled = false;
-            checkBoxHoliday.Enabled = false;
-            btnCalculateByDuration.Enabled = false;
-            btnCalculateByFinish.Enabled = false;
-            btnCalculateByTotalDays.Enabled = false;
-
+            radioBtnHolidayNeedWorking.Checked = true;
         }
 
         protected void InsertIntoDB()
@@ -81,7 +77,8 @@ namespace HuaChun_DailyReport
             commandStr = commandStr + "onsite,";
             commandStr = commandStr + "security,";
             commandStr = commandStr + "computetype,";
-            commandStr = commandStr + "holiday";
+            commandStr = commandStr + "holiday,";
+            commandStr = commandStr + "rainyday";
             commandStr = commandStr + ") values('";
             commandStr = commandStr + textBoxProjectNo.Text + "','";
             commandStr = commandStr + textBoxContractNo.Text + "','";
@@ -94,10 +91,10 @@ namespace HuaChun_DailyReport
             commandStr = commandStr + textBoxSupervisor.Text + "','";
             commandStr = commandStr + textBoxResponsible.Text + "','";
             commandStr = commandStr + textBoxQuality.Text + "','";
-            commandStr = commandStr + Functions.GetDateTimeValue(dateTimeBid.Value)  + "','";
-            commandStr = commandStr + Functions.GetDateTimeValue(dateTimeStart.Value) + "','";
-            commandStr = commandStr + Functions.GetDateTimeValue(dateTimeFinish.Value) + "','";
-            commandStr = commandStr + textBoxAmount.Text + "','";
+            commandStr = commandStr + Functions.TransferDateTimeToSQL(dateTimeBid.Value)  + "','";
+            commandStr = commandStr + Functions.TransferDateTimeToSQL(dateTimeStart.Value) + "','";
+            commandStr = commandStr + Functions.TransferDateTimeToSQL(dateTimeFinish.Value) + "','";
+            commandStr = commandStr + numericAmount.Text + "','";
             commandStr = commandStr + numericDuration.Text + "','";
             commandStr = commandStr + numericDays.Text + "','";
             commandStr = commandStr + textBoxHandle1.Text + "','";
@@ -128,16 +125,20 @@ namespace HuaChun_DailyReport
                     commandStr = commandStr + "5" + "','";
             }
 
-            if(checkBoxHoliday.Checked)
+            if (radioBtnHolidayNoWorking.Checked)
                 commandStr = commandStr + "1";
             else
                 commandStr = commandStr + "0";
+
+            if (radioBtnNoWorkingOnHeavyRainyDay.Checked)
+                commandStr = commandStr + "1";//大雨才不計工期
+            else
+                commandStr = commandStr + "0";//小雨就不計工期
+
             commandStr = commandStr + "')";
 
 
-
-
-            command.CommandText = commandStr;// "Insert into vendor(vendor_no,vendor_name,vendor_abbre) values('" + textBoxVendor_No.Text + "','" + textBoxVendor_Name.Text + "','" + textBoxVendor_Abbre.Text + "')";
+            command.CommandText = commandStr;
             command.ExecuteNonQuery();
             conn.Close();
         }
@@ -160,8 +161,8 @@ namespace HuaChun_DailyReport
             this.radioBtnNoWeekend.Checked = true;
             this.radioBtnSun.Checked = false;
             this.radioBtnSatSun.Checked = false;
-            this.checkBoxHoliday.Checked = false;
-            this.textBoxAmount.Clear();
+            this.radioBtnHolidayNeedWorking.Checked = true;
+            this.radioBtnHolidayNoWorking.Checked = false;
             this.textBoxHandle1.Clear();
             this.textBoxHandle2.Clear();
             this.textBoxHandle3.Clear();
@@ -170,47 +171,48 @@ namespace HuaChun_DailyReport
             this.textBoxPhone2.Clear();
             this.textBoxPhone3.Clear();
             this.textBoxPhone4.Clear();
+            this.numericAmount.Value = 0;
             this.numericDays.Value = 0;
             this.numericDuration.Value = 0;
         }
 
-        private void calculateByDuration()
+        protected void calculateByDuration()
         {
-            DayCompute dayCompute = new DayCompute(dateTimeStart.Value, Convert.ToInt32(numericDuration.Value));
+            DayCompute dayCompute = new DayCompute();
 
             //設定工期計算方式 
             if (radioBtnRestrictSchedule.Checked == true || radioBtnCalenderDay.Checked == true)
             {
-                dayCompute.countSaturday = false;
-                dayCompute.countSunday = false;
-                dayCompute.countHoliday = false;
+                dayCompute.restOnSaturday = false;
+                dayCompute.restOnSunday = false;
+                dayCompute.restOnHoliday = false;
             }
             else
             {
                 if (radioBtnNoWeekend.Checked == true)
                 {
-                    dayCompute.countSaturday = false;//表示週六要施工
-                    dayCompute.countSunday = false;//表示週日要施工
+                    dayCompute.restOnSaturday = false;//表示週六要施工
+                    dayCompute.restOnSunday = false;//表示週日要施工
                 }
                 else if (radioBtnSun.Checked == true)
                 {
-                    dayCompute.countSaturday = false;//表示週六要施工
-                    dayCompute.countSunday = true;//表示週日不施工
+                    dayCompute.restOnSaturday = false;//表示週六要施工
+                    dayCompute.restOnSunday = true;//表示週日不施工
                 }
                 else if (radioBtnSatSun.Checked == true)
                 {
-                    dayCompute.countSaturday = true;//表示週六不施工
-                    dayCompute.countSunday = true;//表示週日不施工
+                    dayCompute.restOnSaturday = true;//表示週六不施工
+                    dayCompute.restOnSunday = true;//表示週日不施工
                 }
 
-                if (checkBoxHoliday.Checked == true)
-                    dayCompute.countHoliday = true;//表示國定假日不施工
+                if (radioBtnHolidayNoWorking.Checked)
+                    dayCompute.restOnHoliday = true;//表示國定假日不施工
                 else
-                    dayCompute.countHoliday = false;//表示國定假日依然要施工
+                    dayCompute.restOnHoliday = false;//表示國定假日依然要施工
             }
 
 
-            DateTime FinishDate = dayCompute.CountByDuration(dateTimeStart.Value, Convert.ToInt32(numericDuration.Value));
+            DateTime FinishDate = dayCompute.CountByDuration(dateTimeStart.Value, Convert.ToSingle(numericDuration.Value));
             dateTimeFinish.Value = FinishDate;
             numericDays.Value = FinishDate.Subtract(dateTimeStart.Value).Days + 1;
         }
@@ -311,7 +313,7 @@ namespace HuaChun_DailyReport
             }
 
 
-            InsertIntoDB();
+            InsertIntoDB();//插入資料進SQL
             this.Close();
         }
 
@@ -328,10 +330,9 @@ namespace HuaChun_DailyReport
                 numericDays.ReadOnly = true;
                 dateTimeFinish.Enabled = true;
                 groupBox2.Enabled = false;
-                checkBoxHoliday.Enabled = false;
-                btnCalculateByDuration.Enabled = false;
-                btnCalculateByFinish.Enabled = false;
-                btnCalculateByTotalDays.Enabled = false;
+                //checkBoxHoliday.Enabled = false;
+                radioBtnHolidayNoWorking.Enabled = false;
+                radioBtnHolidayNeedWorking.Enabled = false;
                 int duration = dateTimeFinish.Value.Date.Subtract(dateTimeStart.Value.Date).Days;
                 this.numericDays.Value = Convert.ToDecimal(duration) + 1;
                 this.numericDuration.Value = Convert.ToDecimal(duration) + 1;
@@ -343,12 +344,11 @@ namespace HuaChun_DailyReport
                 numericDays.ReadOnly = true;
                 dateTimeFinish.Enabled = false;
                 groupBox2.Enabled = false;
-                checkBoxHoliday.Enabled = false;
-                btnCalculateByDuration.Enabled = false;
-                btnCalculateByFinish.Enabled = false;
-                btnCalculateByTotalDays.Enabled = false;
+                //checkBoxHoliday.Enabled = false;
+                radioBtnHolidayNeedWorking.Enabled = false;
+                radioBtnHolidayNoWorking.Enabled = false;
 
-                int v1 = (int)Math.Round((double)numericDuration.Value / 0.5);
+                int v1 = (int)Math.Round((double)numericDuration.Value / 0.5);//為了讓numericUpDown固定以0.5為單位
                 numericDuration.Value = Convert.ToDecimal(v1 * 0.5);
                 numericDays.Value = numericDuration.Value;
                 dateTimeFinish.Value = dateTimeStart.Value.AddDays(Convert.ToInt16(Math.Ceiling(v1 * 0.5))-1);
@@ -362,17 +362,16 @@ namespace HuaChun_DailyReport
                 dateTimeFinish.Enabled = false;
                 
                 groupBox2.Enabled = true;
-                checkBoxHoliday.Enabled = true;
-                btnCalculateByDuration.Enabled = true;
-                btnCalculateByFinish.Enabled = true;
-                btnCalculateByTotalDays.Enabled = true;
+                //checkBoxHoliday.Enabled = true;
+                radioBtnHolidayNoWorking.Enabled = true;
+                radioBtnHolidayNeedWorking.Enabled = true;
                 calculateByDuration();
             }
         }
 
-        private void numericUpDownDays_ValueChanged(object sender, EventArgs e)
+        private void numericDays_ValueChanged(object sender, EventArgs e)
         {
-            int v1 = (int)Math.Round((double)numericDays.Value / 0.5);
+            int v1 = (int)Math.Round((double)numericDays.Value / 0.5);//為了讓numericUpDown固定以0.5為單位
             numericDays.Value = Convert.ToDecimal(v1 * 0.5);
 
             if (radioBtnCalenderDay.Checked == true)
@@ -381,9 +380,9 @@ namespace HuaChun_DailyReport
             }
         }
 
-        private void numericUpDownDuration_ValueChanged(object sender, EventArgs e)
+        private void numericDuration_ValueChanged(object sender, EventArgs e)
         {
-            int v1 = (int)Math.Round((double)numericDuration.Value / 0.5);
+            int v1 = (int)Math.Round((double)numericDuration.Value / 0.5);//為了讓numericUpDown固定以0.5為單位
             numericDuration.Value = Convert.ToDecimal(v1 * 0.5);
 
             if (radioBtnCalenderDay.Checked == true)
@@ -401,6 +400,7 @@ namespace HuaChun_DailyReport
         {
             calculateByDuration();
         }
+
 
         private void dateTimeFinish_ValueChanged(object sender, EventArgs e)
         {

@@ -52,6 +52,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ClassExcelGenerator.cs" />
+    <Compile Include="DailyReportEditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DailyReportEditForm.Designer.cs">
+      <DependentUpon>DailyReportEditForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="ExtentionEditForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -164,6 +171,12 @@
     <Compile Include="ProcessCodeSearchForm.Designer.cs">
       <DependentUpon>ProcessCodeSearchForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ProgressForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProgressForm.Designer.cs">
+      <DependentUpon>ProgressForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="ProjectEditForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -182,11 +195,11 @@
     <Compile Include="QueryDailyReportListForm.Designer.cs">
       <DependentUpon>QueryDailyReportListForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="QueryFinishChartForm.cs">
+    <Compile Include="QueryFinishForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="QueryFinishChartForm.Designer.cs">
-      <DependentUpon>QueryFinishChartForm.cs</DependentUpon>
+    <Compile Include="QueryFinishForm.Designer.cs">
+      <DependentUpon>QueryFinishForm.cs</DependentUpon>
     </Compile>
     <Compile Include="QueryFormBase.cs">
       <SubType>Form</SubType>
@@ -302,11 +315,14 @@
     <EmbeddedResource Include="MaterialSearchForm.resx">
       <DependentUpon>MaterialSearchForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ProgressForm.resx">
+      <DependentUpon>ProgressForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ProjectEditForm.resx">
       <DependentUpon>ProjectEditForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="QueryFinishChartForm.resx">
-      <DependentUpon>QueryFinishChartForm.cs</DependentUpon>
+    <EmbeddedResource Include="QueryFinishForm.resx">
+      <DependentUpon>QueryFinishForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="QueryFormBase.resx">
       <DependentUpon>QueryFormBase.cs</DependentUpon>
@@ -353,6 +369,35 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="Microsoft.Office.Core">
+      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>4</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="Microsoft.Office.Interop.Excel">
+      <Guid>{00020813-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>6</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="VBIDE">
+      <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>5</VersionMajor>
+      <VersionMinor>3</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -32,7 +32,7 @@ namespace HuaChun_DailyReport
             //核准文號
             this.textBoxGrantNumber.Text = grantNumber;
             //追加金額
-            this.textBoxExtendValue.Text = SQL.Read_SQL_data("extendvalue", "extendduration", "project_no = '" + ProjectNumber + "' AND grantnumber = '" + grantNumber + "'");
+            this.numericExtendValue.Value = Convert.ToDecimal(SQL.Read_SQL_data("extendvalue", "extendduration", "project_no = '" + ProjectNumber + "' AND grantnumber = '" + grantNumber + "'"));
             //追加起算日
             string extendstartdate = SQL.Read_SQL_data("extendstartdate", "extendduration", "project_no = '" + ProjectNumber + "' AND grantnumber = '" + grantNumber + "'");
             this.dateTimeExtendStartDate.Value = Functions.TransferSQLDateToDateTime(extendstartdate);
@@ -46,20 +46,12 @@ namespace HuaChun_DailyReport
         protected override void btnOK_Click(object sender, EventArgs e)
         {
             label12.Visible = false;
-            label13.Visible = false;
 
             if (textBoxGrantNumber.Text == string.Empty)
                 label12.Visible = true;
 
-            if (textBoxExtendValue.Text == string.Empty)
-                label13.Visible = true;
-
-
             if (textBoxGrantNumber.Text == string.Empty)
                 return;
-            if (textBoxExtendValue.Text == string.Empty)
-                return;
-
 
 
             //覆寫原有資料
@@ -67,16 +59,16 @@ namespace HuaChun_DailyReport
             if (result == DialogResult.Yes)
             {
                 //核准日期
-                SQL.Set_SQL_data("grantdate", "extendduration", "project_no = '" + ProjectNumber + "' AND grantnumber = '" + this.textBoxGrantNumber.Text + "'", Functions.GetDateTimeValue(dateTimeGrantDate.Value));
+                SQL.Set_SQL_data("grantdate", "extendduration", "project_no = '" + ProjectNumber + "' AND grantnumber = '" + this.textBoxGrantNumber.Text + "'", Functions.TransferDateTimeToSQL(dateTimeGrantDate.Value));
                 //核准文號不變動
                 //追加金額
-                SQL.Set_SQL_data("extendvalue", "extendduration", "project_no = '" + ProjectNumber + "' AND grantnumber = '" + this.textBoxGrantNumber.Text + "'", textBoxExtendValue.Text);
+                SQL.Set_SQL_data("extendvalue", "extendduration", "project_no = '" + ProjectNumber + "' AND grantnumber = '" + this.textBoxGrantNumber.Text + "'", numericExtendValue.Value.ToString());
                 //追加起算日
-                SQL.Set_SQL_data("extendstartdate", "extendduration", "project_no = '" + ProjectNumber + "' AND grantnumber = '" + this.textBoxGrantNumber.Text + "'", Functions.GetDateTimeValue(dateTimeExtendStartDate.Value));
+                SQL.Set_SQL_data("extendstartdate", "extendduration", "project_no = '" + ProjectNumber + "' AND grantnumber = '" + this.textBoxGrantNumber.Text + "'", Functions.TransferDateTimeToSQL(dateTimeExtendStartDate.Value));
                 //追加工期
                 SQL.Set_SQL_data("extendduration", "extendduration", "project_no = '" + ProjectNumber + "' AND grantnumber = '" + this.textBoxGrantNumber.Text + "'", numericExtendDuration.Value.ToString());
                 //填寫日期
-                SQL.Set_SQL_data("writedate", "extendduration", "project_no = '" + ProjectNumber + "' AND grantnumber = '" + this.textBoxGrantNumber.Text + "'", Functions.GetDateTimeValue(dateTimeFilledDate.Value));
+                SQL.Set_SQL_data("writedate", "extendduration", "project_no = '" + ProjectNumber + "' AND grantnumber = '" + this.textBoxGrantNumber.Text + "'", Functions.TransferDateTimeToSQL(dateTimeFilledDate.Value));
             }
             //InsertIntoDB();
             this.Close();

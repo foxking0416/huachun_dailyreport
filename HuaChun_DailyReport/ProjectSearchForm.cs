@@ -15,6 +15,7 @@ namespace HuaChun_DailyReport
         private ProjectEditForm editForm;
         private DailyReportIncreaseForm reportForm;
         private QueryFormBase queryForm;
+        private Main mainForm;
 
         public ProjectSearchForm(ProjectEditForm form)
         {
@@ -39,6 +40,15 @@ namespace HuaChun_DailyReport
             inputFormType = 2;
             InitializeComponent();
             queryForm = form;
+            InitializeProjectSearchForm();
+            Initialize();
+        }
+
+        public ProjectSearchForm(Main form)
+        {
+            inputFormType = 3;
+            InitializeComponent();
+            mainForm = form;
             InitializeProjectSearchForm();
             Initialize();
         }
@@ -68,6 +78,25 @@ namespace HuaChun_DailyReport
                 reportForm.LoadProjectInfo(number);
             else if (inputFormType == 2)
                 queryForm.LoadProjectInfo(number);
+            else if (inputFormType == 3)
+                mainForm.LoadProjectInfo(number);
+            this.Close();
+        }
+
+        protected override void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            //DateTime dateClick = DTStartDate.AddDays(e.RowIndex);
+
+            string number = dataGridView1[0, e.RowIndex].Value.ToString();
+
+            if (inputFormType == 0)
+                editForm.LoadInformation(number);
+            else if (inputFormType == 1)
+                reportForm.LoadProjectInfo(number);
+            else if (inputFormType == 2)
+                queryForm.LoadProjectInfo(number);
+            else if (inputFormType == 3)
+                mainForm.LoadProjectInfo(number);
             this.Close();
         }
     }
